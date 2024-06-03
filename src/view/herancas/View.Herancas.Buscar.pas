@@ -42,10 +42,12 @@ type
     procedure btnAlterarClick(Sender: TObject);
     procedure PopupMenu11Click(Sender: TObject);
     procedure Excluir1Click(Sender: TObject);
+    procedure btnCadastrarClick(Sender: TObject);
   private
     { Private declarations }
   protected
     procedure BuscarDados; virtual;
+    procedure ChamarTelaCadastrar(const AId: Integer = 0); virtual; abstract;
 
   public
     { Public declarations }
@@ -83,6 +85,13 @@ procedure TViewHerancasBuscar.btnAlterarClick(Sender: TObject);
 begin
   if(DataSource1.DataSet.IsEmpty)then
     raise Exception.Create('Selecione um registro');
+
+  Self.ChamarTelaCadastrar(DataSource1.DataSet.FieldByName('ID').AsInteger);
+end;
+
+procedure TViewHerancasBuscar.btnCadastrarClick(Sender: TObject);
+begin
+  Self.ChamarTelaCadastrar;
 end;
 
 procedure TViewHerancasBuscar.btnFecharClick(Sender: TObject);

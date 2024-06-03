@@ -24,6 +24,7 @@ type
     { Private declarations }
   public
     procedure CidadesBuscar(const ACondicao: string);
+    procedure CadastrarGet(const AIdCidade: Integer);
   end;
 
 var
@@ -36,6 +37,16 @@ implementation
 {$R *.dfm}
 
 { TModelCidadesDM }
+
+procedure TModelCidadesDM.CadastrarGet(const AIdCidade: Integer);
+begin
+  QCidadesCadastro.Close;
+  QCidadesCadastro.SQL.Clear;
+  QCidadesCadastro.SQL.Add('select * from cidades ');
+  QCidadesCadastro.SQL.Add('where (id = :IdCidade)');
+  QCidadesCadastro.ParamByName('IdCidade').AsInteger := AIdCidade;
+  QCidadesCadastro.Open;
+end;
 
 procedure TModelCidadesDM.CidadesBuscar(const ACondicao: string);
 begin

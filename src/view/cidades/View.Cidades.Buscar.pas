@@ -14,6 +14,7 @@ type
   private
   protected
     procedure BuscarDados; override;
+    procedure ChamarTelaCadastrar(const AId: Integer = 0); override;
   public
 
   end;
@@ -25,7 +26,8 @@ implementation
 
 {$R *.dfm}
 
-{ TViewCidadesBuscar }
+uses
+  View.Cidades.Cadastrar;
 
 procedure TViewCidadesBuscar.BuscarDados;
 var
@@ -44,6 +46,21 @@ begin
   ModelCidadesDM.CidadesBuscar(LCondicao);
   
   inherited;
+end;
+
+procedure TViewCidadesBuscar.ChamarTelaCadastrar(const AId: Integer = 0);
+var
+  LViewCidadesCadastrar: TViewCidadesCadastrar;
+begin
+  inherited;
+  LViewCidadesCadastrar := TViewCidadesCadastrar.Create(nil);
+  try
+    LViewCidadesCadastrar.IdRegistroAlterar := AId;
+    if(LViewCidadesCadastrar.ShowModal = mrOk)then
+      Self.BuscarDados;
+  finally
+    LViewCidadesCadastrar.Free;
+  end;
 end;
 
 procedure TViewCidadesBuscar.FormCreate(Sender: TObject);
