@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Data.DB, Vcl.Grids, Vcl.DBGrids;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Menus;
 
 type
   TViewHerancasBuscar = class(TForm)
@@ -22,6 +22,11 @@ type
     pnTotal: TPanel;
     lbTotal: TLabel;
     DataSource1: TDataSource;
+    btnAlterar: TBitBtn;
+    PopupMenu1: TPopupMenu;
+    PopupMenu11: TMenuItem;
+    N1: TMenuItem;
+    Excluir1: TMenuItem;
     procedure btnFecharClick(Sender: TObject);
     procedure btnUtilizarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -34,6 +39,9 @@ type
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure rdGroupFiltrosClick(Sender: TObject);
     procedure ApplyBestFitGrid;
+    procedure btnAlterarClick(Sender: TObject);
+    procedure PopupMenu11Click(Sender: TObject);
+    procedure Excluir1Click(Sender: TObject);
   private
     { Private declarations }
   protected
@@ -69,6 +77,12 @@ begin
     end;
     DBGrid1.Columns[i].Width := maxWidth;
   end;
+end;
+
+procedure TViewHerancasBuscar.btnAlterarClick(Sender: TObject);
+begin
+  if(DataSource1.DataSet.IsEmpty)then
+    raise Exception.Create('Selecione um registro');
 end;
 
 procedure TViewHerancasBuscar.btnFecharClick(Sender: TObject);
@@ -117,6 +131,22 @@ begin
     btnUtilizar.Click;
 end;
 
+procedure TViewHerancasBuscar.Excluir1Click(Sender: TObject);
+begin
+  if(DataSource1.DataSet.IsEmpty)then
+    raise Exception.Create('Selecione um registro');
+
+  if (Application.MessageBox(
+    'Confirma a exclusão deste registro?',
+    'Confirma exclusão?',
+    MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) <> IDYES)
+  then
+    Exit;
+
+  DataSource1.DataSet.Delete;
+  Self.BuscarDados;
+end;
+
 procedure TViewHerancasBuscar.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -128,12 +158,23 @@ begin
    end;
    VK_ESCAPE: btnFechar.Click;
   end;
+
+  if (Key in[VK_F1..VK_F12]) then
+  begin
+    if (rdGroupFiltros.Items.Count >= Key - VK_F1) then
+        rdGroupFiltros.ItemIndex := Key - VK_F1;
+  end;
 end;
 
 procedure TViewHerancasBuscar.FormShow(Sender: TObject);
 begin
   Self.ModalResult := mrCancel;
   edtBuscar.SetFocus;
+end;
+
+procedure TViewHerancasBuscar.PopupMenu11Click(Sender: TObject);
+begin
+  Self.BuscarDados;
 end;
 
 procedure TViewHerancasBuscar.rdGroupFiltrosClick(Sender: TObject);
