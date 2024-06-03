@@ -12,7 +12,9 @@ uses
   Model.Pessoas.DM in 'src\model\pessoas\Model.Pessoas.DM.pas' {ModelPessoasDM: TDataModule},
   View.Pessoas.Buscar in 'src\view\pessoas\View.Pessoas.Buscar.pas' {ViewPessoasBuscar},
   View.Pessoas.Cadastrar in 'src\view\pessoas\View.Pessoas.Cadastrar.pas' {ViewPessoasCadastrar},
-  Exceptions.FieldName in 'src\exceptions\Exceptions.FieldName.pas';
+  Exceptions.FieldName in 'src\exceptions\Exceptions.FieldName.pas',
+  RTTI.FieldName in 'src\RTTI\RTTI.FieldName.pas',
+  Utils in 'src\utils\Utils.pas';
 
 {$R *.res}
 
