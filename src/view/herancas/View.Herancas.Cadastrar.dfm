@@ -12,6 +12,7 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   TextHeight = 15
@@ -22,10 +23,8 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
     Height = 321
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 208
-    ExplicitTop = 72
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitWidth = 782
+    ExplicitHeight = 312
   end
   object pnBottom: TPanel
     Left = 0
@@ -34,8 +33,8 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 64
-    ExplicitTop = 313
+    ExplicitTop = 312
+    ExplicitWidth = 782
     object btnCancelar: TBitBtn
       Left = 657
       Top = 1
@@ -98,7 +97,7 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
         0000000000000000000000000000000000000000000000000000}
       TabOrder = 0
       OnClick = btnCancelarClick
-      ExplicitLeft = 712
+      ExplicitLeft = 651
     end
     object btnGravar: TBitBtn
       Left = 527
@@ -166,7 +165,7 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 1
       OnClick = btnGravarClick
-      ExplicitLeft = 582
+      ExplicitLeft = 521
     end
   end
   object DataSource1: TDataSource

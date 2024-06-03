@@ -12,10 +12,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-  protected
-    procedure BuscarDados; override;
+
   public
-    { Public declarations }
+    procedure BuscarDados; override;
+    procedure ChamarTelaCadastrar(const AId: Integer = 0); override;
   end;
 
 var
@@ -44,6 +44,12 @@ begin
   ModelPessoasDM.PessoasBuscar(LCondicao);
 
   inherited;
+end;
+
+procedure TViewPessoasBuscar.ChamarTelaCadastrar(const AId: Integer = 0);
+begin
+  inherited;
+  //
 end;
 
 procedure TViewPessoasBuscar.FormCreate(Sender: TObject);

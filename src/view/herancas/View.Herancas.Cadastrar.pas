@@ -17,10 +17,11 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
   private
-    { Private declarations }
+    FIdRegistroAlterar: Integer;
   public
-    { Public declarations }
+    property IdRegistroAlterar: Integer read FIdRegistroAlterar write FIdRegistroAlterar;
   end;
 
 var
@@ -42,6 +43,11 @@ procedure TViewHerancasCadastrar.btnGravarClick(Sender: TObject);
 begin
   Self.Close;
   Self.ModalResult := mrOk;
+end;
+
+procedure TViewHerancasCadastrar.FormCreate(Sender: TObject);
+begin
+  FIdRegistroAlterar := 0;
 end;
 
 procedure TViewHerancasCadastrar.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

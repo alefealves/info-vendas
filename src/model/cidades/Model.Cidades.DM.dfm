@@ -3,6 +3,7 @@ object ModelCidadesDM: TModelCidadesDM
   Width = 1000
   PixelsPerInch = 120
   object QCidadesCadastro: TFDQuery
+    BeforePost = QCidadesCadastroBeforePost
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'SELECT * FROM CIDADES')
