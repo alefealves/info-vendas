@@ -62,14 +62,4 @@ object ModelCidadesDM: TModelCidadesDM
       Origin = 'CODIGO_IBGE'
     end
   end
-  object DS_QCidadesCadastro: TDataSource
-    DataSet = QCidadesCadastro
-    Left = 240
-    Top = 216
-  end
-  object DS_QCidadesBusca: TDataSource
-    DataSet = QCidadesBusca
-    Left = 400
-    Top = 216
-  end
 end

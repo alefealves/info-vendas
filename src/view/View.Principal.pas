@@ -7,6 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
   ShellAPI;
 
+
 type
   TViewPrincipal = class(TForm)
     MainMenu1: TMainMenu;
@@ -24,6 +25,8 @@ type
     Contasareceber1: TMenuItem;
     Configuraes1: TMenuItem;
     NFCe1: TMenuItem;
+    procedure Cidades1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -38,5 +41,22 @@ implementation
 
 {$R *.dfm}
 
+uses
+  View.Cidades.Buscar;
+
+procedure TViewPrincipal.Cidades1Click(Sender: TObject);
+begin
+  ViewCidadesBuscar := TViewCidadesBuscar.Create(nil);
+  try
+    ViewCidadesBuscar.ShowModal;
+  finally
+    FreeAndNil(ViewCidadesBuscar);
+  end;
+end;
+
+procedure TViewPrincipal.FormCreate(Sender: TObject);
+begin
+  ReportMemoryLeaksOnShutdown := True;
+end;
 
 end.

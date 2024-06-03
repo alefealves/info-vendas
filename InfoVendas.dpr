@@ -2,13 +2,19 @@ program InfoVendas;
 
 uses
   Vcl.Forms,
-  View.Principal in 'src\view\View.Principal.pas' {Form1};
+  View.Principal in 'src\view\View.Principal.pas' {ViewPrincipal},
+  Model.Connection.DM in 'src\model\connection\Model.Connection.DM.pas' {ModelConnectionDM: TDataModule},
+  Model.Cidades.DM in 'src\model\cidades\Model.Cidades.DM.pas' {ModelCidadesDM: TDataModule},
+  View.Herancas.Buscar in 'src\view\herancas\View.Herancas.Buscar.pas' {ViewHerancasBuscar},
+  View.Cidades.Buscar in 'src\view\cidades\View.Cidades.Buscar.pas' {ViewCidadesBuscar};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.Title := 'Sistema de vendas multicamadas';
+  Application.CreateForm(TViewPrincipal, ViewPrincipal);
+  Application.CreateForm(TModelConnectionDM, ModelConnectionDM);
   Application.Run;
 end.
