@@ -38,7 +38,8 @@ implementation
 
 {$R *.dfm}
 
-{ TModelCidadesDM }
+uses
+  Exceptions.FieldName;
 
 procedure TModelCidadesDM.CadastrarGet(const AIdCidade: Integer);
 begin
@@ -67,15 +68,15 @@ end;
 procedure TModelCidadesDM.ValidaDadosQueryCadastro;
 begin
   if (QCidadesCadastroNOME.AsString.Trim.IsEmpty) then
-    raise Exception.Create('Preencha o campo nome');
+    raise ExceptionsFieldName.Create('Preencha o campo nome', 'NOME');
 
   if (QCidadesCadastroUF.AsString.Trim.IsEmpty) then
-    raise Exception.Create('Preencha o campo UF');
+    raise ExceptionsFieldName.Create('Preencha o campo UF', 'UF');
 
   if (QCidadesCadastroCODIGO_IBGE.AsInteger > 0) then
   begin
     if (Length(QCidadesCadastroCODIGO_IBGE.AsString) <> 7) then
-      raise Exception.Create('Código do IBGE deve conter 7 dígitos.');
+      raise ExceptionsFieldName.Create('Código do IBGE deve conter 7 dígitos.', 'CODIGO_IBGE');
   end;
 end;
 
