@@ -126,6 +126,7 @@ object ViewPrincipal: TViewPrincipal
           82790B69696969696969146E5C17196D875869696969696969691D536E6E1D4B
           6A206969696969696969690B1D1A691C09696969696969696969}
         Caption = 'Pessoas'
+        OnClick = Pessoas1Click
       end
       object N1: TMenuItem
         Caption = '-'

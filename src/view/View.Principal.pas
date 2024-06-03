@@ -27,6 +27,7 @@ type
     NFCe1: TMenuItem;
     procedure Cidades1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Pessoas1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -42,7 +43,8 @@ implementation
 {$R *.dfm}
 
 uses
-  View.Cidades.Buscar;
+  View.Cidades.Buscar,
+  View.Pessoas.Buscar;
 
 procedure TViewPrincipal.Cidades1Click(Sender: TObject);
 begin
@@ -57,6 +59,16 @@ end;
 procedure TViewPrincipal.FormCreate(Sender: TObject);
 begin
   ReportMemoryLeaksOnShutdown := True;
+end;
+
+procedure TViewPrincipal.Pessoas1Click(Sender: TObject);
+begin
+  ViewPessoasBuscar := TViewPessoasBuscar.Create(nil);
+  try
+    ViewPessoasBuscar.ShowModal;
+  finally
+    FreeAndNil(ViewPessoasBuscar);
+  end;
 end;
 
 end.
