@@ -9,14 +9,15 @@ object ModelPessoasDM: TModelPessoasDM
     Left = 232
     Top = 216
     object QPessoasCadastroID: TIntegerField
+      AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
+      ReadOnly = True
     end
     object QPessoasCadastroNOME: TStringField
-      DisplayLabel = 'Nome'
+      DisplayLabel = 'Nome/Razao'
       FieldName = 'NOME'
       Origin = 'NOME'
       Size = 60

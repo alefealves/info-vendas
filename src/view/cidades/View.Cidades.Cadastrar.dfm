@@ -3,16 +3,14 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
   ClientHeight = 495
   ClientWidth = 803
   OnShow = FormShow
-  ExplicitLeft = 3
-  ExplicitTop = 3
   ExplicitWidth = 815
   ExplicitHeight = 533
   TextHeight = 15
   inherited pnDados: TPanel
     Width = 803
     Height = 454
-    ExplicitWidth = 598
-    ExplicitHeight = 253
+    ExplicitWidth = 797
+    ExplicitHeight = 445
     object Label1: TLabel
       Left = 16
       Top = 24
@@ -134,17 +132,17 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
   inherited pnBottom: TPanel
     Top = 454
     Width = 803
-    ExplicitTop = 253
-    ExplicitWidth = 598
+    ExplicitTop = 445
+    ExplicitWidth = 797
     inherited btnCancelar: TBitBtn
       Left = 672
       TabOrder = 1
-      ExplicitLeft = 467
+      ExplicitLeft = 666
     end
     inherited btnGravar: TBitBtn
       Left = 542
       TabOrder = 0
-      ExplicitLeft = 337
+      ExplicitLeft = 536
     end
   end
   inherited DataSource1: TDataSource

@@ -39,17 +39,6 @@ implementation
 uses
   Exceptions.FieldName, Utils;
 
-procedure TViewCidadesCadastrar.btnGravarClick(Sender: TObject);
-begin
-  try
-    DataSource1.DataSet.Post;
-  except
-    on E: ExceptionsFieldName do
-      TUtils.TratarExceptionsFieldName(Self, E);
-  end;
-  inherited;
-end;
-
 procedure TViewCidadesCadastrar.FormShow(Sender: TObject);
 begin
   inherited;
@@ -61,6 +50,17 @@ begin
     DataSource1.DataSet.Edit;
 
   edtNome.SetFocus;
+end;
+
+procedure TViewCidadesCadastrar.btnGravarClick(Sender: TObject);
+begin
+  try
+    DataSource1.DataSet.Post;
+  except
+    on E: ExceptionsFieldName do
+      TUtils.TratarExceptionsFieldName(Self, E);
+  end;
+  inherited;
 end;
 
 end.
