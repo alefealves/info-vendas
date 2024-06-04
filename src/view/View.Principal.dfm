@@ -177,6 +177,7 @@ object ViewPrincipal: TViewPrincipal
           50002350FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
           00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         Caption = 'Produtos'
+        OnClick = Produtos1Click
       end
     end
     object Movimentaes1: TMenuItem

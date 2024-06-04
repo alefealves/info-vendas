@@ -36,7 +36,7 @@ object ModelSubgruposDM: TModelSubgruposDM
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
-      DisplayFormat = '000000'
+      DisplayFormat = '/'
     end
     object QSubgruposBuscaNOME: TStringField
       DisplayLabel = 'Nome'

@@ -1,5 +1,6 @@
 inherited ViewSubgruposBuscar: TViewSubgruposBuscar
   Caption = 'Subgupos Buscar'
+  ClientHeight = 555
   ClientWidth = 737
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -15,15 +16,17 @@ inherited ViewSubgruposBuscar: TViewSubgruposBuscar
   end
   inherited pnGrid: TPanel
     Width = 737
-    ExplicitWidth = 731
+    Height = 428
+    ExplicitWidth = 737
     inherited DBGrid1: TDBGrid
       Width = 737
       Height = 419
     end
   end
   inherited pnBottom: TPanel
+    Top = 505
     Width = 737
-    ExplicitWidth = 731
+    ExplicitWidth = 737
     inherited rdGroupFiltros: TRadioGroup
       Width = 371
       Columns = 3
@@ -51,11 +54,11 @@ inherited ViewSubgruposBuscar: TViewSubgruposBuscar
     end
   end
   inherited pnTotal: TPanel
+    Top = 485
     Width = 737
-    ExplicitWidth = 731
+    ExplicitWidth = 737
     inherited lbTotal: TLabel
       Left = 578
-      Height = 18
       ExplicitLeft = 578
     end
   end
