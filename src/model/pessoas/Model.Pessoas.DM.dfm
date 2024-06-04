@@ -1,6 +1,6 @@
 object ModelPessoasDM: TModelPessoasDM
-  Height = 750
-  Width = 1000
+  Height = 277
+  Width = 467
   PixelsPerInch = 120
   object QPessoasCadastro: TFDQuery
     AfterInsert = QPessoasCadastroAfterInsert
@@ -8,8 +8,8 @@ object ModelPessoasDM: TModelPessoasDM
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'select * from pessoas')
-    Left = 232
-    Top = 216
+    Left = 120
+    Top = 104
     object QPessoasCadastroID: TIntegerField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
@@ -165,14 +165,15 @@ object ModelPessoasDM: TModelPessoasDM
       'inner join cidades'
       'on (cidades.id = pessoas.id_cidade)'
       'order by pessoas.id')
-    Left = 416
-    Top = 216
+    Left = 304
+    Top = 104
     object QPessoasBuscaID: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
+      DisplayFormat = '000000'
     end
     object QPessoasBuscaNOME_PESSOA: TStringField
       DisplayLabel = 'Nome'

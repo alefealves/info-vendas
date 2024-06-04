@@ -1,18 +1,16 @@
 inherited ViewCidadesCadastrar: TViewCidadesCadastrar
   Caption = 'Cidades Cadastrar/Alterar'
-  ClientHeight = 304
-  ClientWidth = 555
+  ClientHeight = 295
+  ClientWidth = 549
   OnShow = FormShow
-  ExplicitLeft = 3
-  ExplicitTop = 3
   ExplicitWidth = 567
   ExplicitHeight = 342
   TextHeight = 15
   inherited pnDados: TPanel
-    Width = 555
-    Height = 263
-    ExplicitWidth = 797
-    ExplicitHeight = 445
+    Width = 549
+    Height = 254
+    ExplicitWidth = 549
+    ExplicitHeight = 254
     object Label1: TLabel
       Left = 16
       Top = 24
@@ -132,24 +130,24 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
     end
   end
   inherited pnBottom: TPanel
-    Top = 263
-    Width = 555
-    ExplicitTop = 445
-    ExplicitWidth = 797
+    Top = 254
+    Width = 549
+    ExplicitTop = 254
+    ExplicitWidth = 549
     inherited btnCancelar: TBitBtn
       Left = 424
       TabOrder = 1
-      ExplicitLeft = 666
+      ExplicitLeft = 418
     end
     inherited btnGravar: TBitBtn
       Left = 294
       TabOrder = 0
-      ExplicitLeft = 536
+      ExplicitLeft = 288
     end
   end
   inherited DataSource1: TDataSource
     DataSet = ModelCidadesDM.QCidadesCadastro
-    Left = 536
-    Top = 32
+    Left = 488
+    Top = 24
   end
 end

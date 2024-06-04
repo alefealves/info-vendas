@@ -28,6 +28,7 @@ type
     procedure Cidades1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Pessoas1Click(Sender: TObject);
+    procedure Subgruposdeprodutos1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -44,7 +45,8 @@ implementation
 
 uses
   View.Cidades.Buscar,
-  View.Pessoas.Buscar;
+  View.Pessoas.Buscar,
+  View.Subgrupos.Buscar;
 
 procedure TViewPrincipal.Cidades1Click(Sender: TObject);
 begin
@@ -68,6 +70,16 @@ begin
     ViewPessoasBuscar.ShowModal;
   finally
     FreeAndNil(ViewPessoasBuscar);
+  end;
+end;
+
+procedure TViewPrincipal.Subgruposdeprodutos1Click(Sender: TObject);
+begin
+  ViewSubgruposBuscar := TViewSubgruposBuscar.Create(nil);
+  try
+    ViewSubgruposBuscar.ShowModal;
+  finally
+    FreeAndNil(ViewSubgruposBuscar);
   end;
 end;
 

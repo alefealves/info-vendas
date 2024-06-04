@@ -1,15 +1,15 @@
-object ModelCidadesDM: TModelCidadesDM
+object ModelSubgruposDM: TModelSubgruposDM
   Height = 231
   Width = 440
   PixelsPerInch = 120
-  object QCidadesCadastro: TFDQuery
-    BeforePost = QCidadesCadastroBeforePost
+  object QSubgruposCadastro: TFDQuery
+    BeforePost = QSubgruposCadastroBeforePost
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
-      'SELECT * FROM CIDADES')
+      'SELECT * FROM subgrupos')
     Left = 72
     Top = 96
-    object QCidadesCadastroID: TIntegerField
+    object QSubgruposCadastroID: TIntegerField
       AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ID'
@@ -17,30 +17,20 @@ object ModelCidadesDM: TModelCidadesDM
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       DisplayFormat = '000000'
     end
-    object QCidadesCadastroNOME: TStringField
+    object QSubgruposCadastroNOME: TStringField
       DisplayLabel = 'Nome'
       FieldName = 'NOME'
       Origin = 'NOME'
       Size = 60
     end
-    object QCidadesCadastroUF: TStringField
-      FieldName = 'UF'
-      Origin = 'UF'
-      Size = 2
-    end
-    object QCidadesCadastroCODIGO_IBGE: TIntegerField
-      DisplayLabel = 'C'#243'digo IBGE'
-      FieldName = 'CODIGO_IBGE'
-      Origin = 'CODIGO_IBGE'
-    end
   end
-  object QCidadesBusca: TFDQuery
+  object QSubgruposBusca: TFDQuery
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
-      'SELECT * FROM CIDADES')
+      'SELECT * FROM subgrupos')
     Left = 232
     Top = 96
-    object QCidadesBuscaID: TIntegerField
+    object QSubgruposBuscaID: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ID'
       Origin = 'ID'
@@ -48,36 +38,25 @@ object ModelCidadesDM: TModelCidadesDM
       Required = True
       DisplayFormat = '000000'
     end
-    object QCidadesBuscaNOME: TStringField
+    object QSubgruposBuscaNOME: TStringField
       DisplayLabel = 'Nome'
       FieldName = 'NOME'
       Origin = 'NOME'
       Size = 60
-    end
-    object QCidadesBuscaUF: TStringField
-      FieldName = 'UF'
-      Origin = 'UF'
-      Size = 2
-    end
-    object QCidadesBuscaCODIGO_IBGE: TIntegerField
-      DisplayLabel = 'C'#243'digo IBGE'
-      FieldName = 'CODIGO_IBGE'
-      Origin = 'CODIGO_IBGE'
     end
   end
   object QLook: TFDQuery
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'select'
-      'nome,'
-      'uf'
-      'from cidades'
-      'where (id = :IdCidade)')
+      'nome'
+      'from subgrupos'
+      'where (id = :IdSubgrupo)')
     Left = 368
     Top = 104
     ParamData = <
       item
-        Name = 'IDCIDADE'
+        Name = 'IDSUBGRUPO'
         DataType = ftInteger
         ParamType = ptInput
         Value = Null
@@ -86,11 +65,6 @@ object ModelCidadesDM: TModelCidadesDM
       FieldName = 'NOME'
       Origin = 'NOME'
       Size = 60
-    end
-    object QLookUF: TStringField
-      FieldName = 'UF'
-      Origin = 'UF'
-      Size = 2
     end
   end
 end

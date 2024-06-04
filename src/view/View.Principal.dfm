@@ -146,6 +146,7 @@ object ViewPrincipal: TViewPrincipal
           0308060503020203080605030202020203090704030202030907040302020202
           0303030303020203030303030202}
         Caption = 'Subgrupos de produtos'
+        OnClick = Subgruposdeprodutos1Click
       end
       object Produtos1: TMenuItem
         Bitmap.Data = {
