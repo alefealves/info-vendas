@@ -64,4 +64,32 @@ object ModelCidadesDM: TModelCidadesDM
       Origin = 'CODIGO_IBGE'
     end
   end
+  object QLook: TFDQuery
+    Connection = ModelConnectionDM.FDConnection1
+    SQL.Strings = (
+      'select'
+      'nome,'
+      'uf'
+      'from cidades'
+      'where (id = :IdCidade)')
+    Left = 536
+    Top = 304
+    ParamData = <
+      item
+        Name = 'IDCIDADE'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QLookNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object QLookUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Size = 2
+    end
+  end
 end

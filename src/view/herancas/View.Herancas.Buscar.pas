@@ -46,12 +46,13 @@ type
     procedure DBGrid1TitleClick(Column: TColumn);
   private
     FUltId: Integer;
+    FIdSelecionado: Integer;
   protected
     procedure BuscarDados; virtual;
     procedure ChamarTelaCadastrar(const AId: Integer = 0); virtual; abstract;
-
   public
     property UltId: Integer write FUltId;
+    property IdSelecionado: Integer read FIdSelecionado write FIdSelecionado;
   end;
 
 var
@@ -111,6 +112,7 @@ begin
   if(DataSource1.DataSet.IsEmpty)then
     raise Exception.Create('Selecione um registro');
 
+  FIdSelecionado := DataSource1.DataSet.FieldByName('ID').AsInteger;
   Self.Close;
   Self.ModalResult := mrOk;
 end;
@@ -187,6 +189,7 @@ end;
 procedure TViewHerancasBuscar.FormShow(Sender: TObject);
 begin
   Self.ModalResult := mrCancel;
+  FIdSelecionado := 0;
   edtBuscar.SetFocus;
 end;
 

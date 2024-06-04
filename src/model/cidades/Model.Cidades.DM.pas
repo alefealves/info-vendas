@@ -20,13 +20,18 @@ type
     QCidadesBuscaNOME: TStringField;
     QCidadesBuscaUF: TStringField;
     QCidadesBuscaCODIGO_IBGE: TIntegerField;
+    QLook: TFDQuery;
+    QLookNOME: TStringField;
+    QLookUF: TStringField;
     procedure QCidadesCadastroBeforePost(DataSet: TDataSet);
   private
+
     { Private declarations }
   public
     procedure CidadesBuscar(const ACondicao: string);
     procedure CadastrarGet(const AIdCidade: Integer);
     procedure ValidaDadosQueryCadastro;
+    procedure LookCidade(const AIdCidade: Integer);
   end;
 
 var
@@ -58,6 +63,13 @@ begin
   QCidadesBusca.SQL.Add('select * from cidades ');
   QCidadesBusca.SQL.Add(ACondicao);
   QCidadesBusca.Open;
+end;
+
+procedure TModelCidadesDM.LookCidade(const AIdCidade: Integer);
+begin
+  QLook.Close;
+  QLook.ParamByName('IdCidade').AsInteger := AIdCidade;
+  QLook.Open;
 end;
 
 procedure TModelCidadesDM.QCidadesCadastroBeforePost(DataSet: TDataSet);

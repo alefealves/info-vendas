@@ -3,18 +3,14 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
   ClientHeight = 512
   ClientWidth = 838
   OnShow = FormShow
-  ExplicitLeft = 3
-  ExplicitTop = 3
   ExplicitWidth = 850
   ExplicitHeight = 550
   TextHeight = 15
   inherited pnDados: TPanel
     Width = 838
     Height = 471
-    ExplicitLeft = -40
-    ExplicitTop = 8
-    ExplicitWidth = 838
-    ExplicitHeight = 471
+    ExplicitWidth = 832
+    ExplicitHeight = 462
     object Label1: TLabel
       Left = 16
       Top = 16
@@ -50,9 +46,9 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
     object Label5: TLabel
       Left = 102
       Top = 104
-      Width = 79
+      Width = 102
       Height = 15
-      Caption = 'C'#243'digo Cidade'
+      Caption = 'C'#243'digo Cidade (F8)'
       FocusControl = edtID_CIDADE
     end
     object Label6: TLabel
@@ -235,6 +231,8 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
       DataField = 'ID_CIDADE'
       DataSource = DataSource1
       TabOrder = 7
+      OnExit = edtID_CIDADEExit
+      OnKeyDown = edtID_CIDADEKeyDown
     end
     object edtCidade: TEdit
       Left = 184
@@ -385,15 +383,15 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
   inherited pnBottom: TPanel
     Top = 471
     Width = 838
-    ExplicitTop = 340
-    ExplicitWidth = 882
+    ExplicitTop = 462
+    ExplicitWidth = 832
     inherited btnCancelar: TBitBtn
       Left = 707
-      ExplicitLeft = 751
+      ExplicitLeft = 701
     end
     inherited btnGravar: TBitBtn
       Left = 577
-      ExplicitLeft = 621
+      ExplicitLeft = 571
     end
   end
   inherited DataSource1: TDataSource
