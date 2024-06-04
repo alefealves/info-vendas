@@ -1,14 +1,16 @@
 inherited ViewCidadesCadastrar: TViewCidadesCadastrar
   Caption = 'Cidades Cadastrar/Alterar'
-  ClientHeight = 303
-  ClientWidth = 604
+  ClientHeight = 495
+  ClientWidth = 803
   OnShow = FormShow
-  ExplicitWidth = 616
-  ExplicitHeight = 341
+  ExplicitLeft = 3
+  ExplicitTop = 3
+  ExplicitWidth = 815
+  ExplicitHeight = 533
   TextHeight = 15
   inherited pnDados: TPanel
-    Width = 604
-    Height = 262
+    Width = 803
+    Height = 454
     ExplicitWidth = 598
     ExplicitHeight = 253
     object Label1: TLabel
@@ -31,7 +33,6 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
       Width = 34
       Height = 15
       Caption = 'Nome'
-      FocusControl = edtNome
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -71,15 +72,6 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
       ReadOnly = True
       TabOrder = 0
     end
-    object edtNome: TDBEdit
-      Left = 16
-      Top = 88
-      Width = 480
-      Height = 23
-      DataField = 'NOME'
-      DataSource = DataSource1
-      TabOrder = 1
-    end
     object edtCodigoIBGE: TDBEdit
       Left = 16
       Top = 197
@@ -87,7 +79,7 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
       Height = 23
       DataField = 'CODIGO_IBGE'
       DataSource = DataSource1
-      TabOrder = 3
+      TabOrder = 2
     end
     object cBoxUP: TDBComboBox
       Left = 16
@@ -127,21 +119,30 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
         'SE'
         'TO'
         'EX')
-      TabOrder = 2
+      TabOrder = 1
+    end
+    object edtNome: TDBEdit
+      Left = 16
+      Top = 93
+      Width = 480
+      Height = 23
+      DataField = 'NOME'
+      DataSource = DataSource1
+      TabOrder = 3
     end
   end
   inherited pnBottom: TPanel
-    Top = 262
-    Width = 604
+    Top = 454
+    Width = 803
     ExplicitTop = 253
     ExplicitWidth = 598
     inherited btnCancelar: TBitBtn
-      Left = 473
+      Left = 672
       TabOrder = 1
       ExplicitLeft = 467
     end
     inherited btnGravar: TBitBtn
-      Left = 343
+      Left = 542
       TabOrder = 0
       ExplicitLeft = 337
     end

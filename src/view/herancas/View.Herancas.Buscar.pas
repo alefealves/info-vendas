@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Menus;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Menus, FireDAC.Comp.Client;
 
 type
   TViewHerancasBuscar = class(TForm)
@@ -43,14 +43,15 @@ type
     procedure PopupMenu11Click(Sender: TObject);
     procedure Excluir1Click(Sender: TObject);
     procedure btnCadastrarClick(Sender: TObject);
+    procedure DBGrid1TitleClick(Column: TColumn);
   private
-    { Private declarations }
+    FUltId: Integer;
   protected
     procedure BuscarDados; virtual;
     procedure ChamarTelaCadastrar(const AId: Integer = 0); virtual; abstract;
 
   public
-    { Public declarations }
+    property UltId: Integer write FUltId;
   end;
 
 var
@@ -86,11 +87,16 @@ begin
   if(DataSource1.DataSet.IsEmpty)then
     raise Exception.Create('Selecione um registro');
 
+  FUltId := DataSource1.DataSet.FieldByName('ID').AsInteger;
   Self.ChamarTelaCadastrar(DataSource1.DataSet.FieldByName('ID').AsInteger);
 end;
 
 procedure TViewHerancasBuscar.btnCadastrarClick(Sender: TObject);
 begin
+  FUltId := 0;
+  if(not DataSource1.DataSet.IsEmpty)then
+    FUltId := DataSource1.DataSet.FieldByName('ID').AsInteger;
+
   Self.ChamarTelaCadastrar;
 end;
 
@@ -122,6 +128,9 @@ begin
 
   lbTotal.Caption := 'Registros localizados: ' + FormatFloat('000000', DataSource1.DataSet.RecordCount);
   ApplyBestFitGrid;
+
+  if(FUltId > 0)then
+    DataSource1.DataSet.Locate('ID', FUltId, []);
 end;
 
 procedure TViewHerancasBuscar.edtBuscarKeyDown(Sender: TObject; var Key: Word;
@@ -210,6 +219,25 @@ procedure TViewHerancasBuscar.DBGrid1KeyPress(Sender: TObject; var Key: Char);
 begin
   if(Key = #13)then
     btnUtilizar.Click;
+end;
+
+procedure TViewHerancasBuscar.DBGrid1TitleClick(Column: TColumn);
+var
+  LCampo: string;
+  LOrdem: string;
+begin
+  if(DataSource1.DataSet.IsEmpty)then
+    Exit;
+
+  LCampo := Column.FieldName.Trim;
+  if(LCampo.IsEmpty) or (Column.Field.FieldKind = fkCalculated)then
+    Exit;
+
+  LOrdem := LCampo + ':D;ID';
+  if(TFDQuery(DataSource1.DataSet).IndexFieldNames.Contains(':D'))then
+    LOrdem := LCampo + ';ID';
+
+  TFDQuery(DataSource1.DataSet).IndexFieldNames := LOrdem;
 end;
 
 end.

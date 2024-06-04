@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Herancas.Cadastrar, Data.DB, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Model.Cidades.DM, Vcl.Mask, Vcl.DBCtrls, RTTI.FieldName;
+  Model.Cidades.DM, Vcl.Mask, Vcl.DBCtrls, RTTI.FieldName, Vcl.ComCtrls;
 
 type
   TViewCidadesCadastrar = class(TViewHerancasCadastrar)
@@ -14,7 +14,6 @@ type
     Label2: TLabel;
 
     [FieldName('NOME')]
-    edtNome: TDBEdit;
 
     Label3: TLabel;
     Label4: TLabel;
@@ -24,6 +23,7 @@ type
 
     [FieldName('UF')]
     cBoxUP: TDBComboBox;
+    edtNome: TDBEdit;
     procedure btnGravarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private

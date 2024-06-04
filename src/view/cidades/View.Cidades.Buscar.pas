@@ -57,7 +57,10 @@ begin
   try
     LViewCidadesCadastrar.IdRegistroAlterar := AId;
     if(LViewCidadesCadastrar.ShowModal = mrOk)then
+    begin
+      inherited UltId := LViewCidadesCadastrar.UltId;
       Self.BuscarDados;
+    end;
   finally
     LViewCidadesCadastrar.Free;
   end;

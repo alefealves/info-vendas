@@ -20,8 +20,10 @@ type
     procedure FormCreate(Sender: TObject);
   private
     FIdRegistroAlterar: Integer;
+    FUltId: Integer;
   public
     property IdRegistroAlterar: Integer read FIdRegistroAlterar write FIdRegistroAlterar;
+    property UltId: Integer read FUltId;
   end;
 
 var
@@ -41,6 +43,7 @@ end;
 
 procedure TViewHerancasCadastrar.btnGravarClick(Sender: TObject);
 begin
+  FUltId := DataSource1.DataSet.FieldByName('ID').AsInteger;
   Self.Close;
   Self.ModalResult := mrOk;
 end;

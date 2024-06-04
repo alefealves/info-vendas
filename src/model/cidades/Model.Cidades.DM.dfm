@@ -10,10 +10,12 @@ object ModelCidadesDM: TModelCidadesDM
     Left = 240
     Top = 296
     object QCidadesCadastroID: TIntegerField
+      AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      DisplayFormat = '000000'
     end
     object QCidadesCadastroNOME: TStringField
       DisplayLabel = 'Nome'

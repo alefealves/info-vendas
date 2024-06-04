@@ -4,14 +4,13 @@ inherited ViewCidadesBuscar: TViewCidadesBuscar
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   ExplicitWidth = 749
-  ExplicitHeight = 584
   TextHeight = 15
   inherited pnTop: TPanel
     Width = 737
     ExplicitWidth = 731
     inherited edtBuscar: TEdit
-      Width = 665
-      ExplicitWidth = 659
+      Width = 659
+      ExplicitWidth = 653
     end
   end
   inherited pnGrid: TPanel
@@ -19,7 +18,6 @@ inherited ViewCidadesBuscar: TViewCidadesBuscar
     ExplicitWidth = 731
     inherited DBGrid1: TDBGrid
       Width = 737
-      Height = 419
     end
   end
   inherited pnBottom: TPanel
@@ -57,7 +55,6 @@ inherited ViewCidadesBuscar: TViewCidadesBuscar
     ExplicitWidth = 731
     inherited lbTotal: TLabel
       Left = 578
-      Height = 18
       ExplicitLeft = 578
     end
   end
