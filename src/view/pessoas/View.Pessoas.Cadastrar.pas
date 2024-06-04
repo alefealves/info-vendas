@@ -12,9 +12,15 @@ type
     Label1: TLabel;
     edtID: TDBEdit;
     Label2: TLabel;
+
+    [FieldName('NOME')]
     edtNome: TDBEdit;
+
     Label3: TLabel;
+
+    [FieldName('FANTASIA')]
     edtFantasia: TDBEdit;
+
     edtAtivo: TDBCheckBox;
     edtCliente: TDBCheckBox;
     edtFornecedor: TDBCheckBox;
@@ -22,7 +28,10 @@ type
     edtCEP: TDBEdit;
     Label5: TLabel;
     edtID_CIDADE: TDBEdit;
+
+    [FieldName('ID_CIDADE')]
     edtCidade: TEdit;
+
     Label6: TLabel;
     edtEndereco: TDBEdit;
     Label7: TLabel;
@@ -39,7 +48,7 @@ type
     edtCelular: TDBEdit;
     Label13: TLabel;
     edtEmail: TDBEdit;
-    DBRadioGroup1: TDBRadioGroup;
+    rdGroupJuridico: TDBRadioGroup;
     Label14: TLabel;
     edtCPF: TDBEdit;
     Label15: TLabel;
@@ -54,8 +63,9 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure edtID_CIDADEKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure edtID_CIDADEExit(Sender: TObject);
+    procedure rdGroupJuridicoClick(Sender: TObject);
   private
-    { Private declarations }
+    procedure ConfigurarTipoJuridico;
   public
     { Public declarations }
   end;
@@ -69,6 +79,25 @@ implementation
 
 uses
   Model.Cidades.DM;
+
+procedure TViewPessoasCadastrar.ConfigurarTipoJuridico;
+begin
+  edtCPF.Enabled := True;
+  edtCNPJ.Enabled := True;
+  edtRG.Enabled := True;
+  edtIE.Enabled := True;
+
+  if(rdGroupJuridico.ItemIndex = 0)then
+  begin
+    edtCNPJ.Enabled := False;
+    edtIE.Enabled := False;
+  end
+  else
+  begin
+    edtCPF.Enabled := False;
+    edtRG.Enabled := False;
+  end;
+end;
 
 procedure TViewPessoasCadastrar.edtID_CIDADEExit(Sender: TObject);
 var
@@ -121,9 +150,20 @@ begin
   if (DataSource1.DataSet.IsEmpty) then
     DataSource1.DataSet.Append
   else
+  begin
     DataSource1.DataSet.Edit;
+    edtID_CIDADEExit(edtID_CIDADE);
+  end;
+
+  Self.ConfigurarTipoJuridico;
 
   edtNome.SetFocus;
+end;
+
+procedure TViewPessoasCadastrar.rdGroupJuridicoClick(Sender: TObject);
+begin
+  inherited;
+  Self.ConfigurarTipoJuridico;
 end;
 
 procedure TViewPessoasCadastrar.btnGravarClick(Sender: TObject);

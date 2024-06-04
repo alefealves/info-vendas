@@ -1,17 +1,22 @@
 inherited ViewPessoasBuscar: TViewPessoasBuscar
   Caption = 'ViewPessoasBuscar'
+  ClientHeight = 555
   ClientWidth = 754
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  ExplicitHeight = 584
   TextHeight = 15
   inherited pnTop: TPanel
     Width = 754
+    ExplicitWidth = 748
+    inherited edtBuscar: TEdit
+      Width = 664
+      ExplicitWidth = 658
+    end
   end
   inherited pnGrid: TPanel
     Width = 754
+    Height = 428
     inherited DBGrid1: TDBGrid
-      Height = 419
       Columns = <
         item
           Expanded = False
@@ -66,6 +71,7 @@ inherited ViewPessoasBuscar: TViewPessoasBuscar
     end
   end
   inherited pnBottom: TPanel
+    Top = 505
     Width = 754
     inherited rdGroupFiltros: TRadioGroup
       Columns = 3
@@ -77,6 +83,7 @@ inherited ViewPessoasBuscar: TViewPessoasBuscar
     end
   end
   inherited pnTotal: TPanel
+    Top = 485
     Width = 754
     inherited lbTotal: TLabel
       Height = 18

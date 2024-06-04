@@ -3,6 +3,8 @@ object ModelPessoasDM: TModelPessoasDM
   Width = 1000
   PixelsPerInch = 120
   object QPessoasCadastro: TFDQuery
+    AfterInsert = QPessoasCadastroAfterInsert
+    BeforePost = QPessoasCadastroBeforePost
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'select * from pessoas')
@@ -15,6 +17,7 @@ object ModelPessoasDM: TModelPessoasDM
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       ReadOnly = True
+      DisplayFormat = '000000'
     end
     object QPessoasCadastroNOME: TStringField
       DisplayLabel = 'Nome/Razao'
@@ -46,6 +49,7 @@ object ModelPessoasDM: TModelPessoasDM
       DisplayLabel = 'Cep'
       FieldName = 'CEP'
       Origin = 'CEP'
+      EditMask = '99999-999'
       Size = 10
     end
     object QPessoasCadastroID_CIDADE: TIntegerField
@@ -81,12 +85,14 @@ object ModelPessoasDM: TModelPessoasDM
       DisplayLabel = 'Telefone'
       FieldName = 'TELEFONE'
       Origin = 'TELEFONE'
+      EditMask = '(99)9999-9999'
       Size = 15
     end
     object QPessoasCadastroCELULAR: TStringField
       DisplayLabel = 'Celular'
       FieldName = 'CELULAR'
       Origin = 'CELULAR'
+      EditMask = '(99)99999-9999'
       Size = 15
     end
     object QPessoasCadastroEMAIL: TStringField
@@ -103,6 +109,7 @@ object ModelPessoasDM: TModelPessoasDM
     object QPessoasCadastroCPF: TStringField
       FieldName = 'CPF'
       Origin = 'CPF'
+      EditMask = '999.999.999-99'
       Size = 14
     end
     object QPessoasCadastroRG: TStringField
@@ -113,6 +120,7 @@ object ModelPessoasDM: TModelPessoasDM
     object QPessoasCadastroCNPJ: TStringField
       FieldName = 'CNPJ'
       Origin = 'CNPJ'
+      EditMask = '99.999.999/9999-99'
       Size = 18
     end
     object QPessoasCadastroIE: TStringField
@@ -131,6 +139,7 @@ object ModelPessoasDM: TModelPessoasDM
       DisplayLabel = 'Nascimento'
       FieldName = 'NASCIMENTO'
       Origin = 'NASCIMENTO'
+      EditMask = '99/99/9999'
     end
     object QPessoasCadastroDH_CADASTRO: TSQLTimeStampField
       DisplayLabel = 'Data Cadastro'

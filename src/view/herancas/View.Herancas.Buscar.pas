@@ -189,6 +189,7 @@ end;
 procedure TViewHerancasBuscar.FormShow(Sender: TObject);
 begin
   Self.ModalResult := mrCancel;
+  Self.BuscarDados;
   FIdSelecionado := 0;
   edtBuscar.SetFocus;
 end;

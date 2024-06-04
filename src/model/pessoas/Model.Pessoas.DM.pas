@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Model.Connection.DM, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Exceptions.FieldName;
 
 type
   TModelPessoasDM = class(TDataModule)
@@ -43,11 +43,14 @@ type
     QPessoasCadastroNASCIMENTO: TDateField;
     QPessoasCadastroDH_CADASTRO: TSQLTimeStampField;
     QPessoasCadastroRG: TStringField;
+    procedure QPessoasCadastroAfterInsert(DataSet: TDataSet);
+    procedure QPessoasCadastroBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
     procedure CadastrarGet(const AIdPessoa: Integer);
     procedure PessoasBuscar(const ACondicao: string);
+    procedure ValidaDadosQueryCadastro;
   end;
 
 var
@@ -88,6 +91,32 @@ begin
   QPessoasBusca.SQL.Add('on (cidades.id = pessoas.id_cidade) ');
   QPessoasBusca.SQL.Add(ACondicao);
   QPessoasBusca.Open;
+end;
+
+procedure TModelPessoasDM.QPessoasCadastroAfterInsert(DataSet: TDataSet);
+begin
+  QPessoasCadastroATIVO.AsString := 'S';
+  QPessoasCadastroCLIENTE.AsString := 'S';
+  QPessoasCadastroFORNECEDOR.AsString := 'S';
+  QPessoasCadastroDH_CADASTRO.AsDateTime := Now;
+  QPessoasCadastroTIPO_JURIDICO.AsInteger := 1;
+end;
+
+procedure TModelPessoasDM.QPessoasCadastroBeforePost(DataSet: TDataSet);
+begin
+  Self.ValidaDadosQueryCadastro;
+end;
+
+procedure TModelPessoasDM.ValidaDadosQueryCadastro;
+begin
+  if (QPessoasCadastroNOME.AsString.Trim.IsEmpty) then
+    raise ExceptionsFieldName.Create('Preencha o campo nome', 'NOME');
+
+  if (QPessoasCadastroFANTASIA.AsString.Trim.IsEmpty) then
+    raise ExceptionsFieldName.Create('Preencha o campo fantasia', 'FANTASIA');
+
+  if (QPessoasCadastroID_CIDADE.AsInteger <= 0) then
+    raise ExceptionsFieldName.Create('Preencha o campo código cidade', 'ID_CIDADE');
 end;
 
 end.

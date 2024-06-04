@@ -14,26 +14,44 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
     object Label1: TLabel
       Left = 16
       Top = 16
-      Width = 39
+      Width = 38
       Height = 15
       Caption = 'C'#243'digo'
       FocusControl = edtID
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label2: TLabel
       Left = 82
       Top = 16
-      Width = 69
+      Width = 72
       Height = 15
       Caption = 'Nome/Razao'
       FocusControl = edtNome
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label3: TLabel
       Left = 390
       Top = 21
-      Width = 43
+      Width = 44
       Height = 15
       Caption = 'Fantasia'
       FocusControl = edtFantasia
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label4: TLabel
       Left = 16
@@ -50,6 +68,12 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
       Height = 15
       Caption = 'C'#243'digo Cidade (F8)'
       FocusControl = edtID_CIDADE
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label6: TLabel
       Left = 390
@@ -315,7 +339,7 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
       DataSource = DataSource1
       TabOrder = 16
     end
-    object DBRadioGroup1: TDBRadioGroup
+    object rdGroupJuridico: TDBRadioGroup
       Left = 13
       Top = 264
       Width = 224
@@ -331,6 +355,7 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
       Values.Strings = (
         '1'
         '2')
+      OnClick = rdGroupJuridicoClick
     end
     object edtCPF: TDBEdit
       Left = 243
