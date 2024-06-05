@@ -1943,6 +1943,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
           2062D602427FF7387BF7D1D49B9E3671610DE63B7F2BC94F0BA005C47C1F21BD
           3B8B74F04C0C904B3ECA2653A634323EF763407DC4CFB6919F8B58800BE4FDE3
           12F69E8CD7DD8EC4FF01D1960166974F39100000000049454E44AE426082}
+        PopupMenu = PopupMenu1
         Proportional = True
         ExplicitLeft = 16
         ExplicitTop = 16
@@ -1970,6 +1971,31 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
   inherited DataSource1: TDataSource
     DataSet = ModelProdutosDM.QProdutosCadastro
     Left = 488
-    Top = 24
+    Top = 8
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 536
+    Top = 168
+    object Buscarfoto1: TMenuItem
+      Caption = 'Buscar foto'
+      OnClick = Buscarfoto1Click
+    end
+    object Limparfoto1: TMenuItem
+      Caption = 'Limpar foto'
+      OnClick = Limparfoto1Click
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 
+      'All (*.png_old;*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf;' +
+      '*.tif;*.tiff)|*.png_old;*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.ico;*.e' +
+      'mf;*.wmf;*.tif;*.tiff|Portable Network Graphics (*.png_old)|*.pn' +
+      'g_old|GIF Image (*.gif)|*.gif|Portable Network Graphics (*.png)|' +
+      '*.png|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*.j' +
+      'peg|Bitmaps (*.bmp)|*.bmp|Icons (*.ico)|*.ico|Enhanced Metafiles' +
+      ' (*.emf)|*.emf|Metafiles (*.wmf)|*.wmf|TIFF Images (*.tif)|*.tif' +
+      '|TIFF Images (*.tiff)|*.tiff'
+    Left = 613
+    Top = 169
   end
 end

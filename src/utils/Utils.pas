@@ -16,6 +16,9 @@ type
   TUtils = class
   private
   public
+    class function GetPastaRaiz: string;
+    class function GetPastaImg: string;
+    class function GetPastaImgProdutos: string;
     class procedure TratarExceptionsFieldName(const AForm: TForm; const E: ExceptionsFieldName);
     class procedure SetFocusComponent(const AWinControl: TWinControl);
   end;
@@ -56,6 +59,21 @@ begin
   raise Exception.Create(E.Message);
 end;
 
+class function TUtils.GetPastaRaiz: string;
+begin
+  Result := IncludeTrailingPathDelimiter(ExtractFileDir(ParamStr(0)));
+end;
+
+class function TUtils.GetPastaImg: string;
+begin
+  Result := IncludeTrailingPathDelimiter(Self.GetPastaRaiz + 'Img');
+end;
+
+class function TUtils.GetPastaImgProdutos: string;
+begin
+  Result := IncludeTrailingPathDelimiter(Self.GetPastaImg + 'Produtos');
+end;
+
 class procedure TUtils.SetFocusComponent(const AWinControl: TWinControl);
 var
   LParent: TComponent;
@@ -73,5 +91,9 @@ begin
   if(AWinControl.CanFocus)then
     AWinControl.SetFocus;
 end;
+
+initialization
+  ForceDirectories(TUtils.GetPastaImgProdutos);
+
 
 end.
