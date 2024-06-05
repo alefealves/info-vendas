@@ -20,7 +20,9 @@ uses
   View.Cidades.Cadastrar in 'src\view\cidades\View.Cidades.Cadastrar.pas' {ViewCidadesCadastrar},
   Model.Produtos.DM in 'src\model\produtos\Model.Produtos.DM.pas' {ModelProdutosDM: TDataModule},
   View.Subgrupos.Buscar in 'src\view\subgrupos\View.Subgrupos.Buscar.pas' {ViewSubgruposBuscar},
-  View.Subgrupos.Cadastrar in 'src\view\subgrupos\View.Subgrupos.Cadastrar.pas' {ViewSubgruposCadastrar};
+  View.Subgrupos.Cadastrar in 'src\view\subgrupos\View.Subgrupos.Cadastrar.pas' {ViewSubgruposCadastrar},
+  View.Vendas in 'src\view\vendas\View.Vendas.pas' {ViewVendas},
+  Model.Vendas.DM in 'src\model\vendas\Model.Vendas.DM.pas' {ModelVendasDM: TDataModule};
 
 {$R *.res}
 
