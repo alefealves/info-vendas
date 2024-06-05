@@ -177,6 +177,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataField = 'PRECO_CUSTO'
       DataSource = DataSource1
       TabOrder = 5
+      OnExit = edtPrecoCustoExit
     end
     object edtPorcentagem: TDBEdit
       Left = 102
@@ -186,6 +187,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataField = 'PORCENTAGEM'
       DataSource = DataSource1
       TabOrder = 6
+      OnExit = edtPorcentagemExit
     end
     object edtPrecoVenda: TDBEdit
       Left = 188
@@ -195,6 +197,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataField = 'PRECO_VENDA'
       DataSource = DataSource1
       TabOrder = 7
+      OnExit = edtPrecoVendaExit
     end
     object edtUnidade: TDBEdit
       Left = 274

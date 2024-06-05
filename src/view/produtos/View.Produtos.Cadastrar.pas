@@ -59,7 +59,12 @@ type
     procedure FormShow(Sender: TObject);
     procedure edtIdSubgrupoExit(Sender: TObject);
     procedure edtIdSubgrupoKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edtPrecoCustoExit(Sender: TObject);
+    procedure edtPorcentagemExit(Sender: TObject);
+    procedure edtPrecoVendaExit(Sender: TObject);
   private
+    procedure CalcularPrecoVenda;
+    procedure CalcularPorcentagem;
 
   public
 
@@ -137,6 +142,55 @@ begin
       TUtils.TratarExceptionsFieldName(Self, E);
   end;
   inherited;
+end;
+
+procedure TViewProdutosCadastrar.edtPrecoCustoExit(Sender: TObject);
+begin
+  inherited;
+  Self.CalcularPrecoVenda;
+end;
+
+procedure TViewProdutosCadastrar.edtPorcentagemExit(Sender: TObject);
+begin
+  inherited;
+  Self.CalcularPrecoVenda;
+end;
+
+procedure TViewProdutosCadastrar.CalcularPrecoVenda;
+begin
+  if(edtPrecoCusto.Field.AsFloat < 0)then
+    edtPrecoCusto.Field.AsFloat := 0;
+
+  if(edtPorcentagem.Field.AsFloat < 0)then
+    edtPorcentagem.Field.AsFloat := 0;
+
+  if(edtPrecoCusto.Field.AsFloat = 0)or(edtPorcentagem.Field.AsFloat = 0)then
+    Exit;
+
+  edtPrecoVenda.Field.AsFloat := edtPrecoCusto.Field.AsFloat +
+    ((edtPrecoCusto.Field.AsFloat * edtPorcentagem.Field.AsFloat) / 100);
+end;
+
+procedure TViewProdutosCadastrar.edtPrecoVendaExit(Sender: TObject);
+begin
+  inherited;
+  Self.CalcularPorcentagem;
+end;
+
+procedure TViewProdutosCadastrar.CalcularPorcentagem;
+begin
+  if(edtPrecoVenda.Field.AsFloat < 0)then
+    edtPrecoVenda.Field.AsFloat := 0;
+
+  if(edtPrecoVenda.Field.AsFloat = 0)then
+  begin
+    edtPorcentagem.Field.AsFloat := 0;
+    Exit;
+  end;
+
+  edtPorcentagem.Field.AsFloat := ((edtPrecoVenda.Field.AsFloat / edtPrecoCusto.Field.AsFloat) * 100) - 100;
+  if(edtPorcentagem.Field.AsFloat < 0)then
+    edtPorcentagem.Field.AsFloat := 0;
 end;
 
 end.
