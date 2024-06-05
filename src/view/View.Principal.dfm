@@ -2,7 +2,7 @@ object ViewPrincipal: TViewPrincipal
   Left = 0
   Top = 0
   Caption = 'Info Vendas 1.0.0'
-  ClientHeight = 449
+  ClientHeight = 444
   ClientWidth = 839
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET

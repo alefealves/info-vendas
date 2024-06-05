@@ -42,13 +42,14 @@ object ViewHerancasBuscar: TViewHerancasBuscar
     object edtBuscar: TEdit
       Left = 16
       Top = 28
-      Width = 664
+      Width = 658
       Height = 23
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       OnChange = edtBuscarChange
       OnKeyDown = edtBuscarKeyDown
       OnKeyPress = edtBuscarKeyPress
+      ExplicitWidth = 664
     end
   end
   object pnGrid: TPanel

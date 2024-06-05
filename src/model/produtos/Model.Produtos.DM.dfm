@@ -4,6 +4,8 @@ object ModelProdutosDM: TModelProdutosDM
   Width = 483
   PixelsPerInch = 120
   object QProdutosCadastro: TFDQuery
+    AfterInsert = QProdutosCadastroAfterInsert
+    BeforePost = QProdutosCadastroBeforePost
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'select'

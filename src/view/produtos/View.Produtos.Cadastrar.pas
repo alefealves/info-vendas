@@ -17,20 +17,42 @@ type
     [FieldName('NOME')]
     edtNome: TDBEdit;
     Label3: TLabel;
-    DBEdit1: TDBEdit;
+
+    [FieldName('DESCRICAO')]
+    edtDescricao: TDBEdit;
+
     Label4: TLabel;
+
+    [FieldName('ID_SUBGRUPO')]
     edtIdSubgrupo: TDBEdit;
+
     edtNomeSubgrupo: TEdit;
     Label5: TLabel;
-    DBEdit2: TDBEdit;
+
+    [FieldName('PRECO_CUSTO')]
+    edtPrecoCusto: TDBEdit;
+
     Label6: TLabel;
-    DBEdit3: TDBEdit;
+
+    [FieldName('PORCENTAGEM')]
+    edtPorcentagem: TDBEdit;
+
     Label7: TLabel;
-    DBEdit4: TDBEdit;
+
+    [FieldName('PRECO_VENDA')]
+    edtPrecoVenda: TDBEdit;
+
+
     Label8: TLabel;
-    DBEdit5: TDBEdit;
+
+    [FieldName('UNIDADE')]
+    edtUnidade: TDBEdit;
+
     Label9: TLabel;
-    DBEdit6: TDBEdit;
+
+    [FieldName('CODIGO_BARRAS')]
+    edtCodigoBarras: TDBEdit;
+
     edtImagem: TPanel;
     ImagemProduto: TImage;
     procedure btnGravarClick(Sender: TObject);

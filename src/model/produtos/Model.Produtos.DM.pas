@@ -33,6 +33,8 @@ type
     QProdutosBuscaSUBGRUPO_NOME: TStringField;
     QProdutosCadastroIMAGEM: TStringField;
     procedure DataModuleCreate(Sender: TObject);
+    procedure QProdutosCadastroAfterInsert(DataSet: TDataSet);
+    procedure QProdutosCadastroBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -74,6 +76,19 @@ begin
   QProdutosBusca.Open;
 end;
 
+procedure TModelProdutosDM.QProdutosCadastroAfterInsert(DataSet: TDataSet);
+begin
+  QProdutosCadastroPRECO_CUSTO.AsFloat := 0;
+  QProdutosCadastroPORCENTAGEM.AsFloat := 0;
+  QProdutosCadastroPRECO_VENDA.AsFloat := 0;
+  QProdutosCadastroUNIDADE.AsString := 'UN';
+end;
+
+procedure TModelProdutosDM.QProdutosCadastroBeforePost(DataSet: TDataSet);
+begin
+  Self.ValidaDadosQueryCadastro;
+end;
+
 procedure TModelProdutosDM.LookProduto(const AIdProduto: Integer);
 begin
   QLook.Close;
@@ -88,7 +103,33 @@ end;
 
 procedure TModelProdutosDM.ValidaDadosQueryCadastro;
 begin
-  //
+  if (QProdutosCadastroNOME.AsString.Trim.IsEmpty) then
+    raise ExceptionsFieldName.Create('Preencha o campo nome', QProdutosCadastroNOME.FieldName);
+
+  if (QProdutosCadastroDESCRICAO.AsString.Trim.IsEmpty) and (QProdutosCadastroDESCRICAO.AsString.Trim.Length < 10) then
+    raise ExceptionsFieldName.Create('Preencha o campo descrição com no mínimo 10 caracteres', QProdutosCadastroNOME.FieldName);
+
+  if (QProdutosCadastroID_SUBGRUPO.AsInteger <= 0) then
+    raise ExceptionsFieldName.Create('Preencha o campo código subgrupo', QProdutosCadastroID_SUBGRUPO.FieldName);
+
+  if (QProdutosCadastroPRECO_CUSTO.AsFloat < 0) then
+    raise ExceptionsFieldName.Create('Preencha o campo preco custo', QProdutosCadastroPRECO_CUSTO.FieldName);
+
+  if (QProdutosCadastroPORCENTAGEM.AsFloat < 0) then
+    raise ExceptionsFieldName.Create('Preencha o campo porcentagem', QProdutosCadastroPORCENTAGEM.FieldName);
+
+  if (QProdutosCadastroPRECO_VENDA.AsFloat <= 0) then
+    raise ExceptionsFieldName.Create('Preencha o campo preco de venda', QProdutosCadastroPRECO_VENDA.FieldName);
+
+  if (QProdutosCadastroPRECO_VENDA.AsFloat < QProdutosCadastroPRECO_CUSTO.AsFloat) then
+    raise ExceptionsFieldName.Create('O preco de venda não pode ser menor que o preco de custo', QProdutosCadastroPRECO_VENDA.FieldName);
+
+  if (QProdutosCadastroUNIDADE.AsString.Trim.IsEmpty) then
+    raise ExceptionsFieldName.Create('Informe a unidade', QProdutosCadastroUNIDADE.FieldName);
+
+  if (QProdutosCadastroCODIGO_BARRAS.AsString.Trim.IsEmpty) then
+    raise ExceptionsFieldName.Create('Informe a código de barras', QProdutosCadastroCODIGO_BARRAS.FieldName);
+
 end;
 
 end.

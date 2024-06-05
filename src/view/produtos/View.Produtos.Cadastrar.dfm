@@ -1,16 +1,16 @@
 inherited ViewProdutosCadastrar: TViewProdutosCadastrar
   Caption = 'Produtos Cadastrar/Alterar'
-  ClientHeight = 304
+  ClientHeight = 255
   ClientWidth = 718
   OnShow = FormShow
   ExplicitLeft = 3
   ExplicitTop = 3
   ExplicitWidth = 730
-  ExplicitHeight = 342
+  ExplicitHeight = 293
   TextHeight = 15
   inherited pnDados: TPanel
     Width = 718
-    Height = 263
+    Height = 214
     ExplicitWidth = 549
     ExplicitHeight = 254
     object Label1: TLabel
@@ -43,18 +43,30 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
     object Label3: TLabel
       Left = 16
       Top = 77
-      Width = 51
+      Width = 54
       Height = 15
       Caption = 'Descricao'
-      FocusControl = DBEdit1
+      FocusControl = edtDescricao
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label4: TLabel
       Left = 343
       Top = 77
-      Width = 100
+      Width = 102
       Height = 15
       Caption = 'C'#243'd. Subgrupo(F8)'
       FocusControl = edtIdSubgrupo
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label5: TLabel
       Left = 16
@@ -62,7 +74,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       Width = 64
       Height = 15
       Caption = 'Preco Custo'
-      FocusControl = DBEdit2
+      FocusControl = edtPrecoCusto
     end
     object Label6: TLabel
       Left = 102
@@ -70,15 +82,21 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       Width = 71
       Height = 15
       Caption = 'Porcentagem'
-      FocusControl = DBEdit3
+      FocusControl = edtPorcentagem
     end
     object Label7: TLabel
       Left = 188
       Top = 134
-      Width = 65
+      Width = 69
       Height = 15
       Caption = 'Preco Venda'
-      FocusControl = DBEdit4
+      FocusControl = edtPrecoVenda
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object Label8: TLabel
       Left = 274
@@ -86,15 +104,21 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       Width = 79
       Height = 15
       Caption = 'Unidade (sigla)'
-      FocusControl = DBEdit5
+      FocusControl = edtUnidade
     end
     object Label9: TLabel
       Left = 360
       Top = 134
-      Width = 74
+      Width = 76
       Height = 15
       Caption = 'C'#243'digo Barras'
-      FocusControl = DBEdit6
+      FocusControl = edtCodigoBarras
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
     end
     object edtCodigo: TDBEdit
       Left = 16
@@ -116,7 +140,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataSource = DataSource1
       TabOrder = 1
     end
-    object DBEdit1: TDBEdit
+    object edtDescricao: TDBEdit
       Left = 16
       Top = 93
       Width = 324
@@ -145,7 +169,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       ReadOnly = True
       TabOrder = 4
     end
-    object DBEdit2: TDBEdit
+    object edtPrecoCusto: TDBEdit
       Left = 16
       Top = 150
       Width = 80
@@ -154,7 +178,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataSource = DataSource1
       TabOrder = 5
     end
-    object DBEdit3: TDBEdit
+    object edtPorcentagem: TDBEdit
       Left = 102
       Top = 150
       Width = 80
@@ -163,7 +187,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataSource = DataSource1
       TabOrder = 6
     end
-    object DBEdit4: TDBEdit
+    object edtPrecoVenda: TDBEdit
       Left = 188
       Top = 150
       Width = 80
@@ -172,7 +196,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataSource = DataSource1
       TabOrder = 7
     end
-    object DBEdit5: TDBEdit
+    object edtUnidade: TDBEdit
       Left = 274
       Top = 150
       Width = 80
@@ -181,7 +205,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
       DataSource = DataSource1
       TabOrder = 8
     end
-    object DBEdit6: TDBEdit
+    object edtCodigoBarras: TDBEdit
       Left = 360
       Top = 150
       Width = 199
@@ -1925,7 +1949,7 @@ inherited ViewProdutosCadastrar: TViewProdutosCadastrar
     end
   end
   inherited pnBottom: TPanel
-    Top = 263
+    Top = 214
     Width = 718
     ExplicitTop = 254
     ExplicitWidth = 549
