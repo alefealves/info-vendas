@@ -7,7 +7,7 @@ object ModelSubgruposDM: TModelSubgruposDM
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'SELECT * FROM subgrupos')
-    Left = 72
+    Left = 73
     Top = 96
     object QSubgruposCadastroID: TIntegerField
       AutoGenerateValue = arDefault
@@ -28,7 +28,7 @@ object ModelSubgruposDM: TModelSubgruposDM
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'SELECT * FROM subgrupos')
-    Left = 232
+    Left = 233
     Top = 96
     object QSubgruposBuscaID: TIntegerField
       DisplayLabel = 'C'#243'digo'
@@ -36,7 +36,7 @@ object ModelSubgruposDM: TModelSubgruposDM
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
-      DisplayFormat = '/'
+      DisplayFormat = '000000'
     end
     object QSubgruposBuscaNOME: TStringField
       DisplayLabel = 'Nome'
@@ -52,7 +52,7 @@ object ModelSubgruposDM: TModelSubgruposDM
       'nome'
       'from subgrupos'
       'where (id = :IdSubgrupo)')
-    Left = 368
+    Left = 360
     Top = 104
     ParamData = <
       item

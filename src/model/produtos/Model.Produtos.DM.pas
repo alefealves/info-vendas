@@ -31,6 +31,7 @@ type
     QProdutosBuscaCODIGO_BARRAS: TStringField;
     QProdutosBuscaID_SUBGRUPO: TIntegerField;
     QProdutosBuscaSUBGRUPO_NOME: TStringField;
+    QProdutosCadastroIMAGEM: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

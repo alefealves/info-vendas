@@ -8,6 +8,7 @@ object ModelConnectionDM: TModelConnectionDM
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Left = 200
     Top = 248

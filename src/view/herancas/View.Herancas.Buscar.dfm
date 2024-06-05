@@ -42,14 +42,13 @@ object ViewHerancasBuscar: TViewHerancasBuscar
     object edtBuscar: TEdit
       Left = 16
       Top = 28
-      Width = 676
+      Width = 664
       Height = 23
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       OnChange = edtBuscarChange
       OnKeyDown = edtBuscarKeyDown
       OnKeyPress = edtBuscarKeyPress
-      ExplicitWidth = 670
     end
   end
   object pnGrid: TPanel
@@ -406,7 +405,7 @@ object ViewHerancasBuscar: TViewHerancasBuscar
       Left = 595
       Top = 1
       Width = 148
-      Height = 18
+      Height = 15
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 10
@@ -414,7 +413,6 @@ object ViewHerancasBuscar: TViewHerancasBuscar
       Align = alRight
       Caption = 'Registros Localizados: 00000'
       Layout = tlCenter
-      ExplicitHeight = 15
     end
   end
   object DataSource1: TDataSource

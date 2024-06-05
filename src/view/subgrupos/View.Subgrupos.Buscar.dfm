@@ -10,23 +10,33 @@ inherited ViewSubgruposBuscar: TViewSubgruposBuscar
     Width = 737
     ExplicitWidth = 731
     inherited edtBuscar: TEdit
-      Width = 653
-      ExplicitWidth = 647
+      Width = 647
+      ExplicitWidth = 641
     end
   end
   inherited pnGrid: TPanel
     Width = 737
     Height = 428
-    ExplicitWidth = 737
+    ExplicitWidth = 731
     inherited DBGrid1: TDBGrid
       Width = 737
-      Height = 419
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'ID'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME'
+          Visible = True
+        end>
     end
   end
   inherited pnBottom: TPanel
     Top = 505
     Width = 737
-    ExplicitWidth = 737
+    ExplicitWidth = 731
     inherited rdGroupFiltros: TRadioGroup
       Width = 371
       Columns = 3
@@ -56,9 +66,10 @@ inherited ViewSubgruposBuscar: TViewSubgruposBuscar
   inherited pnTotal: TPanel
     Top = 485
     Width = 737
-    ExplicitWidth = 737
+    ExplicitWidth = 731
     inherited lbTotal: TLabel
       Left = 578
+      Height = 18
       ExplicitLeft = 578
     end
   end

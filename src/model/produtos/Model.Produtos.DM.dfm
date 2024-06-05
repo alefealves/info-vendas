@@ -12,11 +12,12 @@ object ModelProdutosDM: TModelProdutosDM
     Left = 128
     Top = 96
     object QProdutosCadastroID: TIntegerField
+      AutoGenerateValue = arDefault
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
+      ReadOnly = True
       DisplayFormat = '000000'
     end
     object QProdutosCadastroID_SUBGRUPO: TIntegerField
@@ -41,6 +42,7 @@ object ModelProdutosDM: TModelProdutosDM
       DisplayLabel = 'Preco Custo'
       FieldName = 'PRECO_CUSTO'
       Origin = 'PRECO_CUSTO'
+      DisplayFormat = ',,0.00'
       EditFormat = ',,0.00'
       Precision = 18
       Size = 2
@@ -49,6 +51,7 @@ object ModelProdutosDM: TModelProdutosDM
       DisplayLabel = 'Porcentagem'
       FieldName = 'PORCENTAGEM'
       Origin = 'PORCENTAGEM'
+      DisplayFormat = ',,0.00'
       EditFormat = ',,0.00'
       Precision = 18
       Size = 2
@@ -57,11 +60,13 @@ object ModelProdutosDM: TModelProdutosDM
       DisplayLabel = 'Preco Venda'
       FieldName = 'PRECO_VENDA'
       Origin = 'PRECO_VENDA'
+      DisplayFormat = ',,0.00'
       EditFormat = ',,0.00'
       Precision = 18
       Size = 2
     end
     object QProdutosCadastroUNIDADE: TStringField
+      DisplayLabel = 'Unidade'
       FieldName = 'UNIDADE'
       Origin = 'UNIDADE'
     end
@@ -69,6 +74,12 @@ object ModelProdutosDM: TModelProdutosDM
       DisplayLabel = 'C'#243'digo Barras'
       FieldName = 'CODIGO_BARRAS'
       Origin = 'CODIGO_BARRAS'
+    end
+    object QProdutosCadastroIMAGEM: TStringField
+      DisplayLabel = 'Imagem'
+      FieldName = 'IMAGEM'
+      Origin = 'IMAGEM'
+      Size = 200
     end
   end
   object QLook: TFDQuery
@@ -110,7 +121,7 @@ object ModelProdutosDM: TModelProdutosDM
       'inner join subgrupos s'
       'on p.id_subgrupo = s.id'
       '')
-    Left = 352
+    Left = 353
     Top = 96
     object QProdutosBuscaID: TIntegerField
       DisplayLabel = 'C'#243'digo'

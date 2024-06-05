@@ -3,8 +3,9 @@ inherited ViewProdutosBuscar: TViewProdutosBuscar
   ClientWidth = 737
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  ExplicitLeft = 3
+  ExplicitTop = 3
   ExplicitWidth = 749
-  ExplicitHeight = 584
   TextHeight = 15
   inherited pnTop: TPanel
     Width = 737
@@ -19,7 +20,6 @@ inherited ViewProdutosBuscar: TViewProdutosBuscar
     ExplicitWidth = 731
     inherited DBGrid1: TDBGrid
       Width = 737
-      Height = 419
       Columns = <
         item
           Expanded = False
@@ -73,11 +73,13 @@ inherited ViewProdutosBuscar: TViewProdutosBuscar
     ExplicitWidth = 731
     inherited rdGroupFiltros: TRadioGroup
       Width = 371
-      Columns = 3
+      Columns = 2
       ItemIndex = 1
       Items.Strings = (
         'C'#243'digo (F1)'
-        'Nome (F2)')
+        'Nome (F2)'
+        'C'#243'digo Barras (F3)'
+        'Subgrupo (F4)')
       ExplicitWidth = 365
     end
     inherited btnCadastrar: TBitBtn

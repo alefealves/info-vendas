@@ -14,7 +14,7 @@ type
   private
   protected
     procedure BuscarDados; override;
-    //procedure ChamarTelaCadastrar(const AId: Integer = 0); override;
+    procedure ChamarTelaCadastrar(const AId: Integer = 0); override;
   public
 
   end;
@@ -26,8 +26,8 @@ implementation
 
 {$R *.dfm}
 
-//uses
-//  View.Subgrupos.Cadastrar;
+uses
+  View.Produtos.Cadastrar;
 
 procedure TViewProdutosBuscar.BuscarDados;
 var
@@ -40,6 +40,8 @@ begin
   case rdGroupFiltros.ItemIndex of
    0: LCondicao := 'where ( p.id like ' + LStrBuscar + ' )';
    1: LCondicao := 'where ( lower(p.nome) like ' + LStrBuscar + ' )';
+   2: LCondicao := 'where ( p.codigo_barras like ' + LStrBuscar + ' )';
+   3: LCondicao := 'where ( lower(s.nome) like ' + LStrBuscar + ' )';
   end;
 
   ModelProdutosDM.ProdutosBuscar(LCondicao);
@@ -47,23 +49,23 @@ begin
   inherited;
 end;
 
-//procedure TViewProdutosBuscar.ChamarTelaCadastrar(const AId: Integer = 0);
-//var
-//  LViewSubgruposCadastrar: TViewSubgruposCadastrar;
-//begin
-//  inherited;
-//  LViewSubgruposCadastrar := TViewSubgruposCadastrar.Create(nil);
-//  try
-//    LViewSubgruposCadastrar.IdRegistroAlterar := AId;
-//    if(LViewSubgruposCadastrar.ShowModal = mrOk)then
-//    begin
-//      inherited UltId := LViewSubgruposCadastrar.UltId;
-//      Self.BuscarDados;
-//    end;
-//  finally
-//    LViewSubgruposCadastrar.Free;
-//  end;
-//end;
+procedure TViewProdutosBuscar.ChamarTelaCadastrar(const AId: Integer = 0);
+var
+  LViewProdutosCadastrar: TViewProdutosCadastrar;
+begin
+  inherited;
+  LViewProdutosCadastrar := TViewProdutosCadastrar.Create(nil);
+  try
+    LViewProdutosCadastrar.IdRegistroAlterar := AId;
+    if(LViewProdutosCadastrar.ShowModal = mrOk)then
+    begin
+      inherited UltId := LViewProdutosCadastrar.UltId;
+      Self.BuscarDados;
+    end;
+  finally
+    LViewProdutosCadastrar.Free;
+  end;
+end;
 
 procedure TViewProdutosBuscar.FormCreate(Sender: TObject);
 begin

@@ -3,6 +3,8 @@ inherited ViewPessoasCadastrar: TViewPessoasCadastrar
   ClientHeight = 512
   ClientWidth = 838
   OnShow = FormShow
+  ExplicitLeft = 3
+  ExplicitTop = 3
   ExplicitWidth = 850
   ExplicitHeight = 550
   TextHeight = 15
