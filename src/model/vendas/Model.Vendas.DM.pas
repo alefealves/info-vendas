@@ -38,6 +38,14 @@ type
     QVendasItensListarTOTAL_LIQUIDO: TFMTBCDField;
     QVendasItensListarPRODUTO_NOME: TStringField;
     QVendasItensCadastrarTOTAL_BRUTO: TFMTBCDField;
+    QVendasTotalizar: TFDQuery;
+    QVendasTotalizarTOTALQUANTIDADE: TFMTBCDField;
+    QVendasTotalizarTOTALBRUTO: TFMTBCDField;
+    QVendasTotalizarTOTALDESCONTO: TFMTBCDField;
+    QVendasTotalizarTOTALACRESCIMO: TFMTBCDField;
+    QVendasTotalizarTOTALLIQUIDO: TFMTBCDField;
+    QVendasItensListarTOTAL_BRUTO: TFMTBCDField;
+    QVendasItensListarIMAGEM: TStringField;
     procedure QVendasCadastrarAfterInsert(DataSet: TDataSet);
     procedure QVendasItensCadastrarAfterInsert(DataSet: TDataSet);
   private
@@ -46,6 +54,7 @@ type
     procedure VendasGet(const AIdVenda: Integer = 0);
     procedure VendasItensGet(const AIdItem: Integer = 0);
     procedure VendasItensListar(const AIdVenda: Integer = 0; const AIdItemVendaFocar: Integer = 0);
+    procedure VendasTotalizar(const AIdVenda: Integer);
   end;
 
 var
@@ -107,6 +116,13 @@ begin
   QVendasItensCadastrarDESCONTO.AsFloat := 0;
   QVendasItensCadastrarACRESCIMO.AsFloat := 0;
   QVendasItensCadastrarTOTAL_BRUTO.AsFloat := 0;
+end;
+
+procedure TModelVendasDM.VendasTotalizar(const AIdVenda: Integer);
+begin
+  QVendasTotalizar.Close;
+  QVendasTotalizar.ParamByName('IdVenda').AsInteger := AIdVenda;
+  QVendasTotalizar.Open;
 end;
 
 end.

@@ -72,6 +72,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure edtLancamentoKeyPress(Sender: TObject; var Key: Char);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DS_VendasItensListarDataChange(Sender: TObject; Field: TField);
   private
     FDM: TModelVendasDM;
     procedure ProcessarF2;
@@ -81,6 +82,7 @@ type
     procedure CancelarVenda;
     procedure ProcessarF3;
     procedure ProcessarEnterNoEdtLancamento;
+    procedure TotalizarVenda;
   public
   end;
 var
@@ -217,6 +219,9 @@ begin
 
   FDM.VendasItensListar(FDM.QVendasCadastrarID.AsInteger, FDM.QVendasItensCadastrarID.AsInteger);
 
+  Self.TotalizarVenda;
+
+  edtLancamento.Clear;
   edtLancamento.SetFocus;
 end;
 
@@ -225,8 +230,48 @@ procedure TViewVendas.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; 
 begin
   if(not Odd(TDBGrid(Sender).DataSource.DataSet.RecNo))then
     DBGrid1.Canvas.Brush.Color := $00DDDDDD;
-
   TDBGrid(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+procedure TViewVendas.TotalizarVenda;
+begin
+  if not (FDM.QVendasCadastrar.State in dsEditModes)then
+    Exit;
+
+  FDM.VendasTotalizar(FDM.QVendasCadastrarID.AsInteger);
+  FDM.QVendasCadastrarTOTAL_BRUTO.AsFloat := FDM.QVendasTotalizarTOTALBRUTO.AsFloat;
+  FDM.QVendasCadastrarTOTAL_DESCONTOS.AsFloat := FDM.QVendasTotalizarTOTALDESCONTO.AsFloat;
+  FDM.QVendasCadastrarTOTAL_ACRESCIMOS.AsFloat := FDM.QVendasTotalizarTOTALACRESCIMO.AsFloat;
+  FDM.QVendasCadastrarTOTAL_LIQUIDO.AsFloat := FDM.QVendasTotalizarTOTALLIQUIDO.AsFloat;
+  FDM.QVendasCadastrar.Post;
+  FDM.QVendasCadastrar.Edit;
+end;
+
+procedure TViewVendas.DS_VendasItensListarDataChange(Sender: TObject; Field: TField);
+var
+  LFileImg : string;
+begin
+  if(FDM.QVendasItensListar.IsEmpty)then
+    Exit;
+
+  if(FDM.QVendasItensListarID.AsInteger <= 0)then
+    Exit;
+
+  if(FDM.QVendasItensListarIMAGEM.AsString.Trim.IsEmpty)then
+  begin
+    Self.ImagemPadrao;
+    Exit;
+  end;
+
+  LFileImg := TUtils.GetPastaImgProdutos + FDM.QVendasItensListarIMAGEM.AsString.Trim;
+
+  if(not FileExists(LFileImg))then
+  begin
+    Self.ImagemPadrao;
+    Exit;
+  end;
+
+  imgFoto.Picture.LoadFromFile(LFileImg);
 end;
 
 end.

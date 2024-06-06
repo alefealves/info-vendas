@@ -154,13 +154,14 @@ object ModelVendasDM: TModelVendasDM
     SQL.Strings = (
       'select'
       'vi.*,'
-      'p.nome produto_nome'
+      'p.nome produto_nome,'
+      'p.imagem'
       'from vendas_itens vi'
       'join produtos p '
       'on (vi.id_produto = p.id)'
       'where (vi.id_venda = :IdVenda)')
-    Left = 272
-    Top = 80
+    Left = 264
+    Top = 48
     ParamData = <
       item
         Name = 'IDVENDA'
@@ -229,6 +230,86 @@ object ModelVendasDM: TModelVendasDM
       ProviderFlags = []
       ReadOnly = True
       Size = 100
+    end
+    object QVendasItensListarTOTAL_BRUTO: TFMTBCDField
+      FieldName = 'TOTAL_BRUTO'
+      Origin = 'TOTAL_BRUTO'
+      Precision = 18
+      Size = 2
+    end
+    object QVendasItensListarIMAGEM: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'IMAGEM'
+      Origin = 'IMAGEM'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 200
+    end
+  end
+  object QVendasTotalizar: TFDQuery
+    Connection = ModelConnectionDM.FDConnection1
+    SQL.Strings = (
+      'select'
+      'sum(vi.quantidade) as TotalQuantidade,'
+      'sum(vi.total_bruto) as TotalBruto,'
+      'sum(vi.desconto) as TotalDesconto,'
+      'sum(vi.acrescimo) as TotalAcrescimo,'
+      'sum(vi.total_liquido) as TotalLiquido'
+      'from vendas_itens vi'
+      'where (vi.id_venda = :IdVenda)')
+    Left = 272
+    Top = 144
+    ParamData = <
+      item
+        Name = 'IDVENDA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object QVendasTotalizarTOTALQUANTIDADE: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOTALQUANTIDADE'
+      Origin = 'TOTALQUANTIDADE'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+    object QVendasTotalizarTOTALBRUTO: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOTALBRUTO'
+      Origin = 'TOTALBRUTO'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+    object QVendasTotalizarTOTALDESCONTO: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOTALDESCONTO'
+      Origin = 'TOTALDESCONTO'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+    object QVendasTotalizarTOTALACRESCIMO: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOTALACRESCIMO'
+      Origin = 'TOTALACRESCIMO'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+    object QVendasTotalizarTOTALLIQUIDO: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'TOTALLIQUIDO'
+      Origin = 'TOTALLIQUIDO'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
     end
   end
 end

@@ -2356,7 +2356,7 @@ object ViewVendas: TViewVendas
             end
             item
               Expanded = False
-              FieldName = 'PRODUTONOME'
+              FieldName = 'PRODUTO_NOME'
               Title.Caption = 'Produto'
               Width = 260
               Visible = True
@@ -2428,6 +2428,7 @@ object ViewVendas: TViewVendas
   end
   object DS_VendasItensListar: TDataSource
     DataSet = ModelVendasDM.QVendasItensListar
+    OnDataChange = DS_VendasItensListarDataChange
     Left = 421
     Top = 312
   end
