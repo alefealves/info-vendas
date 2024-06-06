@@ -2153,9 +2153,9 @@ object ViewVendas: TViewVendas
           object Label12: TLabel
             Left = 123
             Top = 21
-            Width = 100
+            Width = 134
             Height = 13
-            Caption = 'DEL - Excluir produto'
+            Caption = 'DEL - Excluir venda/produto'
           end
         end
       end
@@ -2347,6 +2347,8 @@ object ViewVendas: TViewVendas
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = [fsBold]
           OnDrawColumnCell = DBGrid1DrawColumnCell
+          OnKeyDown = DBGrid1KeyDown
+          OnTitleClick = DBGrid1TitleClick
           Columns = <
             item
               Expanded = False

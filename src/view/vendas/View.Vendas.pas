@@ -20,7 +20,8 @@ uses
   Vcl.Imaging.pngimage,
   Model.Vendas.DM,
   Utils,
-  Model.Produtos.DM;
+  Model.Produtos.DM,
+  FireDAC.Comp.Client;
 type
   TViewVendas = class(TForm)
     pnBackTudo: TPanel;
@@ -73,6 +74,8 @@ type
     procedure edtLancamentoKeyPress(Sender: TObject; var Key: Char);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DS_VendasItensListarDataChange(Sender: TObject; Field: TField);
+    procedure DBGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGrid1TitleClick(Column: TColumn);
   private
     FDM: TModelVendasDM;
     procedure ProcessarF2;
@@ -83,6 +86,9 @@ type
     procedure ProcessarF3;
     procedure ProcessarEnterNoEdtLancamento;
     procedure TotalizarVenda;
+    procedure ProcessarDelete;
+    procedure DeleteItemSelecionado;
+    procedure DeletarVendaAtual;
   public
   end;
 var
@@ -120,7 +126,49 @@ begin
     end;
     VK_Escape:
       Self.ProcessarEsc;
+    VK_UP:
+    begin
+      DBGrid1.DataSource.DataSet.Prior;
+      Key := 0;
+    end;
+    VK_DOWN:
+    begin
+      DBGrid1.DataSource.DataSet.Next;
+      Key := 0;
+    end;
+    VK_DELETE:
+      Self.ProcessarDelete;
   end;
+end;
+
+procedure TViewVendas.ProcessarDelete;
+begin
+  if(FDM.QVendasCadastrar.State in dsEditModes)then
+    Self.DeleteItemSelecionado
+  else
+    Self.DeletarVendaAtual;
+end;
+
+procedure TViewVendas.DeleteItemSelecionado;
+begin
+  if not (FDM.QVendasCadastrar.State in dsEditModes)then
+    Exit;
+
+  if (FDM.QVendasItensListar.IsEmpty) then
+    raise Exception.Create('Selecione um item para ser excluído');
+
+  if(Application.MessageBox('Confirma a exclusão deste item selecionado:', 'Confirmação',
+    MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) <> IDYES)
+  then
+    Exit;
+
+  FDM.QVendasItensListar.Delete;
+  Self.TotalizarVenda;
+end;
+
+procedure TViewVendas.DeletarVendaAtual;
+begin
+
 end;
 
 procedure TViewVendas.ProcessarF2;
@@ -185,6 +233,11 @@ begin
 end;
 
 procedure TViewVendas.ProcessarEnterNoEdtLancamento;
+var
+  LCodBarras : string;
+  LQtd: Double;
+  LDesconto: Double;
+  LAcrescimo: Double;
 begin
   if not (FDM.QVendasCadastrar.State in dsEditModes)then
     Exit;
@@ -192,7 +245,9 @@ begin
   if(Trim(edtLancamento.Text).IsEmpty)then
     Exit;
 
-  if(not ModelProdutosDM.LookProduto(edtLancamento.Text))then
+  TUtils.PegarDadosLancamento(edtLancamento.Text, LCodBarras, LQtd, LDesconto, LAcrescimo);
+
+  if(not ModelProdutosDM.LookProduto(LCodBarras))then
   begin
      edtLancamento.SetFocus;
      raise Exception.Create('Produto não encontrado');
@@ -207,12 +262,12 @@ begin
   FDM.QVendasItensCadastrar.Append;
   FDM.QVendasItensCadastrarID_VENDA.AsInteger := FDM.QVendasCadastrarID.AsInteger;
   FDM.QVendasItensCadastrarID_PRODUTO.AsInteger := ModelProdutosDM.QLookID.AsInteger;
-  FDM.QVendasItensCadastrarQUANTIDADE.AsFloat := 1;
+  FDM.QVendasItensCadastrarQUANTIDADE.AsFloat := LQtd;
   FDM.QVendasItensCadastrarVALOR_UNITARIO.AsFloat := ModelProdutosDM.QLookPRECO_VENDA.AsFloat;
   FDM.QVendasItensCadastrarTOTAL_BRUTO.AsFloat :=
     FDM.QVendasItensCadastrarQUANTIDADE.AsFloat * FDM.QVendasItensCadastrarVALOR_UNITARIO.AsFloat;
-  FDM.QVendasItensCadastrarDESCONTO.AsFloat := 0;
-  FDM.QVendasItensCadastrarACRESCIMO.AsFloat := 0;
+  FDM.QVendasItensCadastrarDESCONTO.AsFloat := LDesconto;
+  FDM.QVendasItensCadastrarACRESCIMO.AsFloat := LAcrescimo;
   FDM.QVendasItensCadastrarTOTAL_LIQUIDO.AsFloat := FDM.QVendasItensCadastrarTOTAL_BRUTO.AsFloat -
     FDM.QVendasItensCadastrarDESCONTO.AsFloat + FDM.QVendasItensCadastrarACRESCIMO.AsFloat;
   FDM.QVendasItensCadastrar.Post;
@@ -231,6 +286,31 @@ begin
   if(not Odd(TDBGrid(Sender).DataSource.DataSet.RecNo))then
     DBGrid1.Canvas.Brush.Color := $00DDDDDD;
   TDBGrid(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+procedure TViewVendas.DBGrid1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if(ssCtrl in Shift) and (Key = VK_DELETE)then
+    Key := 0;
+end;
+
+procedure TViewVendas.DBGrid1TitleClick(Column: TColumn);
+var
+  LCampo: string;
+  LOrdem: string;
+begin
+  if(DS_VendasItensListar.DataSet.IsEmpty)then
+    Exit;
+
+  LCampo := Column.FieldName.Trim;
+  if(LCampo.IsEmpty) or (Column.Field.FieldKind = fkCalculated)then
+    Exit;
+
+  LOrdem := LCampo + ':D;ID';
+  if(TFDQuery(DS_VendasItensListar.DataSet).IndexFieldNames.Contains(':D'))then
+    LOrdem := LCampo + ';ID';
+
+  TFDQuery(DS_VendasItensListar.DataSet).IndexFieldNames := LOrdem;
 end;
 
 procedure TViewVendas.TotalizarVenda;

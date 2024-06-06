@@ -151,6 +151,11 @@ object ModelVendasDM: TModelVendasDM
   end
   object QVendasItensListar: TFDQuery
     Connection = ModelConnectionDM.FDConnection1
+    FetchOptions.AssignedValues = [evItems]
+    FetchOptions.Items = [fiBlobs, fiDetails]
+    UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate]
+    UpdateOptions.EnableInsert = False
+    UpdateOptions.EnableUpdate = False
     SQL.Strings = (
       'select'
       'vi.*,'
