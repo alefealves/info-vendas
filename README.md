@@ -24,7 +24,7 @@ ctrl + shift + F9
 
 2. **Tela Cidades Cadastro**: Tela de cadastro de cidades
 
-![Tela Cidades Cadastro](screenshots/cidades_cadastro.png)
+![Tela Cidades Cadastro](screenshots/cidades_cadastrar.png)
 
 3. **Tela Cidades Buscar**: Tela de busca de cidades
 
