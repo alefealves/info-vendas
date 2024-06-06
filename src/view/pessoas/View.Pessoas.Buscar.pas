@@ -11,6 +11,7 @@ type
   TViewPessoasBuscar = class(TViewHerancasBuscar)
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure Excluir1Click(Sender: TObject);
   private
 
   public
@@ -62,6 +63,14 @@ begin
   finally
     LViewPessoasCadastrar.Free;
   end;
+end;
+
+procedure TViewPessoasBuscar.Excluir1Click(Sender: TObject);
+begin
+  if(ModelPessoasDM.QPessoasBuscaID.AsInteger = 1)then
+    raise Exception.Create('A pessoa com o código 1 não pode ser excluída');
+
+  inherited;
 end;
 
 procedure TViewPessoasBuscar.FormCreate(Sender: TObject);

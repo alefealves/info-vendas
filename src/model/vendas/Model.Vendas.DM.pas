@@ -37,10 +37,15 @@ type
     QVendasItensListarACRESCIMO: TFMTBCDField;
     QVendasItensListarTOTAL_LIQUIDO: TFMTBCDField;
     QVendasItensListarPRODUTO_NOME: TStringField;
+    QVendasItensCadastrarTOTAL_BRUTO: TFMTBCDField;
+    procedure QVendasCadastrarAfterInsert(DataSet: TDataSet);
+    procedure QVendasItensCadastrarAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure VendasGet(const AIdVenda: Integer = 0);
+    procedure VendasItensGet(const AIdItem: Integer = 0);
+    procedure VendasItensListar(const AIdVenda: Integer = 0; const AIdItemVendaFocar: Integer = 0);
   end;
 
 var
@@ -51,5 +56,57 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+{ TModelVendasDM }
+
+procedure TModelVendasDM.VendasGet(const AIdVenda: Integer = 0);
+begin
+  QVendasCadastrar.Close;
+  QVendasCadastrar.ParamByName('IdVenda').AsInteger := AIdVenda;
+  QVendasCadastrar.Open;
+end;
+
+procedure TModelVendasDM.VendasItensGet(const AIdItem: Integer);
+begin
+  QVendasItensCadastrar.Close;
+  QVendasItensCadastrar.ParamByName('IdItem').AsInteger := AIdItem;
+  QVendasItensCadastrar.Open;
+end;
+
+procedure TModelVendasDM.VendasItensListar(const AIdVenda: Integer = 0; const AIdItemVendaFocar: Integer = 0);
+begin
+  QVendasItensListar.DisableControls;
+  try
+    QVendasItensListar.Close;
+    QVendasItensListar.ParamByName('IdVenda').AsInteger := AIdVenda;
+    QVendasItensListar.Open;
+
+    if(AIdItemVendaFocar > 0)then
+      QVendasItensListar.Locate('ID', AIdItemVendaFocar, [loCaseInsensitive]);
+  finally
+    QVendasItensListar.EnableControls;
+  end;
+end;
+
+procedure TModelVendasDM.QVendasCadastrarAfterInsert(DataSet: TDataSet);
+begin
+  QVendasCadastrarID_PESSOA.AsInteger := 1;
+  QVendasCadastrarDATA.AsDateTime := Date;
+  QVendasCadastrarHORA.AsDateTime := Time;
+  QVendasCadastrarTOTAL_BRUTO.AsFloat := 0;
+  QVendasCadastrarTOTAL_DESCONTOS.AsFloat := 0;
+  QVendasCadastrarTOTAL_ACRESCIMOS.AsFloat := 0;
+  QVendasCadastrarTOTAL_LIQUIDO.AsFloat := 0;
+end;
+
+procedure TModelVendasDM.QVendasItensCadastrarAfterInsert(DataSet: TDataSet);
+begin
+  QVendasItensCadastrarQUANTIDADE.AsFloat := 1;
+  QVendasItensCadastrarVALOR_UNITARIO.AsFloat := 0;
+  QVendasItensCadastrarTOTAL_LIQUIDO.AsFloat := 0;
+  QVendasItensCadastrarDESCONTO.AsFloat := 0;
+  QVendasItensCadastrarACRESCIMO.AsFloat := 0;
+  QVendasItensCadastrarTOTAL_BRUTO.AsFloat := 0;
+end;
 
 end.

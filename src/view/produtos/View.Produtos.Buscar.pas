@@ -11,6 +11,7 @@ type
   TViewProdutosBuscar = class(TViewHerancasBuscar)
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure Excluir1Click(Sender: TObject);
   private
   protected
     procedure BuscarDados; override;
@@ -65,6 +66,14 @@ begin
   finally
     LViewProdutosCadastrar.Free;
   end;
+end;
+
+procedure TViewProdutosBuscar.Excluir1Click(Sender: TObject);
+begin
+  if(ModelProdutosDM.QProdutosBuscaID.AsInteger = 1)then
+    raise Exception.Create('O produto com o código 1 não pode ser excluído');
+
+  inherited;
 end;
 
 procedure TViewProdutosBuscar.FormCreate(Sender: TObject);

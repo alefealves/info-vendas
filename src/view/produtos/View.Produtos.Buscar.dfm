@@ -1,22 +1,22 @@
 inherited ViewProdutosBuscar: TViewProdutosBuscar
   Caption = 'Produtos Buscar'
+  ClientHeight = 555
   ClientWidth = 737
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  ExplicitLeft = 3
-  ExplicitTop = 3
   ExplicitWidth = 749
   TextHeight = 15
   inherited pnTop: TPanel
     Width = 737
     ExplicitWidth = 731
     inherited edtBuscar: TEdit
-      Width = 647
-      ExplicitWidth = 641
+      Width = 641
+      ExplicitWidth = 635
     end
   end
   inherited pnGrid: TPanel
     Width = 737
+    Height = 428
     ExplicitWidth = 731
     inherited DBGrid1: TDBGrid
       Width = 737
@@ -34,41 +34,49 @@ inherited ViewProdutosBuscar: TViewProdutosBuscar
         item
           Expanded = False
           FieldName = 'PRECO_CUSTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'PORCENTAGEM'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'PRECO_VENDA'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'UNIDADE'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'CODIGO_BARRAS'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'ID_SUBGRUPO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'SUBGRUPO_NOME'
+          Width = 64
           Visible = True
         end>
     end
   end
   inherited pnBottom: TPanel
+    Top = 505
     Width = 737
     ExplicitWidth = 731
     inherited rdGroupFiltros: TRadioGroup
@@ -100,6 +108,7 @@ inherited ViewProdutosBuscar: TViewProdutosBuscar
     end
   end
   inherited pnTotal: TPanel
+    Top = 485
     Width = 737
     ExplicitWidth = 731
     inherited lbTotal: TLabel

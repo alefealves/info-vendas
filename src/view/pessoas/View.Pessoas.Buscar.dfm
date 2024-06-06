@@ -7,10 +7,9 @@ inherited ViewPessoasBuscar: TViewPessoasBuscar
   TextHeight = 15
   inherited pnTop: TPanel
     Width = 754
-    ExplicitWidth = 748
     inherited edtBuscar: TEdit
-      Width = 664
-      ExplicitWidth = 658
+      Width = 658
+      ExplicitWidth = 652
     end
   end
   inherited pnGrid: TPanel
@@ -31,11 +30,13 @@ inherited ViewPessoasBuscar: TViewPessoasBuscar
         item
           Expanded = False
           FieldName = 'FANTASIA'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'CLIENTE'
+          Width = 64
           Visible = True
         end
         item
@@ -46,26 +47,31 @@ inherited ViewPessoasBuscar: TViewPessoasBuscar
         item
           Expanded = False
           FieldName = 'ID_CIDADE'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'NOME_CIDADE'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'UF'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'ENDERECO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'CELULAR'
+          Width = 64
           Visible = True
         end>
     end

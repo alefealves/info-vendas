@@ -12,7 +12,6 @@ type
     QProdutosCadastro: TFDQuery;
     QLook: TFDQuery;
     QProdutosBusca: TFDQuery;
-    QLookNOME: TStringField;
     QProdutosCadastroID: TIntegerField;
     QProdutosCadastroID_SUBGRUPO: TIntegerField;
     QProdutosCadastroNOME: TStringField;
@@ -32,6 +31,10 @@ type
     QProdutosBuscaID_SUBGRUPO: TIntegerField;
     QProdutosBuscaSUBGRUPO_NOME: TStringField;
     QProdutosCadastroIMAGEM: TStringField;
+    QLookID: TIntegerField;
+    QLookNOME: TStringField;
+    QLookPRECO_VENDA: TFMTBCDField;
+    QLookUNIDADE: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure QProdutosCadastroAfterInsert(DataSet: TDataSet);
     procedure QProdutosCadastroBeforePost(DataSet: TDataSet);
@@ -41,12 +44,12 @@ type
     procedure ProdutosBuscar(const ACondicao: string);
     procedure CadastrarGet(const AIdProduto: Integer);
     procedure ValidaDadosQueryCadastro;
-    procedure LookProduto(const AIdProduto: Integer);
+    function LookProduto(const ACodBarras: string): Boolean;
   end;
 
 var
-  Query_QProdutosBusca: string;
   ModelProdutosDM: TModelProdutosDM;
+  Query_QProdutosBusca: string;
 
 implementation
 
@@ -89,11 +92,14 @@ begin
   Self.ValidaDadosQueryCadastro;
 end;
 
-procedure TModelProdutosDM.LookProduto(const AIdProduto: Integer);
+function TModelProdutosDM.LookProduto(const ACodBarras: string): Boolean;
 begin
+
   QLook.Close;
-  QLook.ParamByName('IdProduto').AsInteger := AIdProduto;
+  QLook.ParamByName('CodBarras').AsString := ACodBarras;
   QLook.Open;
+
+  Result := not QLook.IsEmpty;
 end;
 
 procedure TModelProdutosDM.DataModuleCreate(Sender: TObject);

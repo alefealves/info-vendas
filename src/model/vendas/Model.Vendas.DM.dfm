@@ -3,6 +3,7 @@ object ModelVendasDM: TModelVendasDM
   Width = 591
   PixelsPerInch = 120
   object QVendasCadastrar: TFDQuery
+    AfterInsert = QVendasCadastrarAfterInsert
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'select '
@@ -71,6 +72,7 @@ object ModelVendasDM: TModelVendasDM
     end
   end
   object QVendasItensCadastrar: TFDQuery
+    AfterInsert = QVendasItensCadastrarAfterInsert
     Connection = ModelConnectionDM.FDConnection1
     SQL.Strings = (
       'select'
@@ -135,6 +137,13 @@ object ModelVendasDM: TModelVendasDM
     object QVendasItensCadastrarTOTAL_LIQUIDO: TFMTBCDField
       FieldName = 'TOTAL_LIQUIDO'
       Origin = 'TOTAL_LIQUIDO'
+      DisplayFormat = ',,0.00'
+      Precision = 18
+      Size = 2
+    end
+    object QVendasItensCadastrarTOTAL_BRUTO: TFMTBCDField
+      FieldName = 'TOTAL_BRUTO'
+      Origin = 'TOTAL_BRUTO'
       DisplayFormat = ',,0.00'
       Precision = 18
       Size = 2

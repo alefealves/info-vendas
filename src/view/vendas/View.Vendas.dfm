@@ -14,6 +14,9 @@ object ViewVendas: TViewVendas
   KeyPreview = True
   Position = poScreenCenter
   WindowState = wsMaximized
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
   TextHeight = 13
   object pnBackTudo: TPanel
     Left = 0
@@ -47,7 +50,7 @@ object ViewVendas: TViewVendas
       ParentBackground = False
       TabOrder = 0
       ExplicitWidth = 1094
-      object Label1: TLabel
+      object lbMsg: TLabel
         Left = 10
         Top = 0
         Width = 1080
@@ -131,6 +134,7 @@ object ViewVendas: TViewVendas
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
+          OnKeyPress = edtLancamentoKeyPress
         end
         object pnBackValores: TPanel
           Left = 0
@@ -255,14 +259,16 @@ object ViewVendas: TViewVendas
             Margins.Right = 0
             Margins.Bottom = 10
             Align = alTop
+            Color = clBtnFace
             DataField = 'QUANTIDADE'
-            DataSource = DS_VendasItensCadastrar
+            DataSource = DS_VendasItensListar
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -16
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ReadOnly = True
             TabOrder = 0
           end
           object edtValorUnitario: TDBEdit
@@ -278,7 +284,7 @@ object ViewVendas: TViewVendas
             Align = alTop
             Color = clBtnFace
             DataField = 'VALOR_UNITARIO'
-            DataSource = DS_VendasItensCadastrar
+            DataSource = DS_VendasItensListar
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -16
@@ -299,14 +305,16 @@ object ViewVendas: TViewVendas
             Margins.Right = 0
             Margins.Bottom = 10
             Align = alTop
+            Color = clBtnFace
             DataField = 'DESCONTO'
-            DataSource = DS_VendasItensCadastrar
+            DataSource = DS_VendasItensListar
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -16
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ReadOnly = True
             TabOrder = 2
           end
           object edtAcrescimo: TDBEdit
@@ -320,14 +328,16 @@ object ViewVendas: TViewVendas
             Margins.Right = 0
             Margins.Bottom = 10
             Align = alTop
+            Color = clBtnFace
             DataField = 'ACRESCIMO'
-            DataSource = DS_VendasItensCadastrar
+            DataSource = DS_VendasItensListar
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -16
             Font.Name = 'Tahoma'
             Font.Style = [fsBold]
             ParentFont = False
+            ReadOnly = True
             TabOrder = 3
           end
           object edtTotalLiquido: TDBEdit
@@ -343,7 +353,7 @@ object ViewVendas: TViewVendas
             Align = alTop
             Color = clBtnFace
             DataField = 'TOTAL_LIQUIDO'
-            DataSource = DS_VendasItensCadastrar
+            DataSource = DS_VendasItensListar
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -16
@@ -2336,6 +2346,7 @@ object ViewVendas: TViewVendas
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = [fsBold]
+          OnDrawColumnCell = DBGrid1DrawColumnCell
           Columns = <
             item
               Expanded = False
